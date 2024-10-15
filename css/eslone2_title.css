@@ -6,23 +6,24 @@
 
     .container {
       width: 100%;
-      margin: none;
+      margin: 0 auto;
     }
 
     .header {
       display: flex;
-      justify-content: space-between;
+      justify-content:space-between;
       align-items: center;
-      background: rgba(173, 216, 230, 0.8); /* 50%の透過処理 */
+      margin-left:-5%;
+      background: rgb(173 230 226 / 60%); /* 50%の透過処理 */
+      padding:0px 5%;
       position: fixed; /* スクロール時に固定 */
-      width: 100%;
+      width:  102%;
       top: 0;
       z-index: 1000; /* 他の要素の上に表示 */
       transition: top 0.3s; /* スムーズな移動 */
-      overflow: hidden; /* 追加: はみ出しを防ぐ */
+      overflow: none; /* 追加: はみ出しを防ぐ */
       height: 50px; /* ヘッダーの高さを50pxに設定 */
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /*下に影を設定*/
-      margin-left: -5px;
     }
 
     .header img {
@@ -31,12 +32,12 @@
     }
 
     .header h4 {
-      margin: 100px;
+      margin: 4%;
       white-space: nowrap; /* 追加: テキストの折り返しを防ぐ */
     }
 
     .header a {
-      margin: 0 15px;
+      margin: none;
       text-decoration: none;
       color: #000;
     }
