@@ -57,7 +57,7 @@
       box-shadow: none; /* ボックスシャドウを削除 */
     }
 
-.h2{
+.main h2{
       margin-top:50px;
       text-align:center;
 }
