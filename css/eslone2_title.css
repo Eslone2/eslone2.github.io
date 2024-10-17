@@ -61,11 +61,14 @@
       text-align:center;
 }
 
-.main h3{
-      margin-left:5%;
+.article_lists h3{
+      margin-left:8%;
+      font-size:120%;
 }
 
-.main a{
-      margin-left:20%
-      font-size:10%;
+.article_lists a{
+      margin-left:10%;
+      font-size:90%;
+      text-decoration-line:none;
+      color:#000000;
 }
