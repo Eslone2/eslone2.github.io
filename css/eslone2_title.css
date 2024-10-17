@@ -27,7 +27,7 @@
       z-index: 1000; /* 他の要素の上に表示 */
       transition: top 0.3s; /* スムーズな移動 */
       overflow: hidden; /* 追加: はみ出しを防ぐ */
-      height: 50px; /* ヘッダーの高さを50pxに設定 */
+      height: 60px; /* ヘッダーの高さを50pxに設定 */
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /*下に影を設定*/
       margin-left: -5%;
     }
