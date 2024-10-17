@@ -22,20 +22,20 @@
       align-items: center;
       background: rgb(173 230 226 / 59%); /* 50%の透過処理 */
       position: fixed; /* スクロール時に固定 */
-      width: 102%;
+      width: 108%;
       top: 0;
       z-index: 1000; /* 他の要素の上に表示 */
       transition: top 0.3s; /* スムーズな移動 */
       overflow: hidden; /* 追加: はみ出しを防ぐ */
       height: 50px; /* ヘッダーの高さを50pxに設定 */
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /*下に影を設定*/
-      margin-left: -1%;
+      margin-left: -5%;
     }
 
     .header img {
-      width: 10%;
-      height: auto;
-      margin-left:5%;
+      width: 15%;
+      height: 50%;
+      margin-left:10%;
     }
 
     .header h4 {
