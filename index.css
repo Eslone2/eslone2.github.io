@@ -1,0 +1,132 @@
+/* 全体 */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2E2E2E;
+    color: #eee;
+    line-height: 1.6;
+}
+
+/* ヘッダー */
+header {
+    background-color: #444;
+    color: white;
+    padding: 0.5em 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ロゴ（h1）左寄せ */
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+    margin-left: 2%;
+}
+
+header h1 a {
+    color: white;
+    text-decoration: none;
+}
+
+/* ナビゲーション */
+nav {
+    display: flex;
+    align-items: center;
+    margin-right: 2%; /* ← ここでBlogを2%右寄せ */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav li {
+    margin-left: 1.5em;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ハンバーガー */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+}
+
+/* メイン */
+main {
+    padding: 2em;
+    text-align: center;
+}
+
+main img {
+    max-width: 100%;
+    height: auto;
+    margin: 1em 0;
+}
+
+main h2 {
+    font-size: 2em;
+    margin-top: 0;
+}
+
+/* フッター */
+footer {
+    background-color: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 1em;
+    font-size: 0.9em;
+    margin-top: 2em;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: #444;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 1em;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* imgを左右隙間ゼロにする */
+    main {
+        padding: 0;
+    }
+
+    main img {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+}

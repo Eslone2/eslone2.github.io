@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eslone's HP</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+  <header>
+    <h1><a href="./index.html">Eslone's HP</a></h1>
+  
+    <nav>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <ul id="nav-list">
+        <li><a href="./html/20241017.html">Blog</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <main>
+    <br><br>
+    <h2>Home</h2>
+    <br><br>
+    <img src="./image/20231209_161306.png" alt="八戸城跡（三八城公園）" width="1024">
+    <br><br>
+    <p>八戸城跡（三八城公園）</p>
+    <br><br>
+  </main>
+
+  <footer>
+    <p>2025<br>Designed by WordPress</p>
+  </footer>
+
+</body>
+</html>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('nav-list').classList.toggle('active');
+  }
+</script>
