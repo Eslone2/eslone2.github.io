@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>えすろんのホームページ</title>
+  <link rel="stylesheet" href="../css/20241017.css">
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Eslone's HP</a></h1>
+  <nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul id="nav-list">
+      <li><a href="../html/20241017.html">Blog</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h2>HP始めました</h2>
+  <img src="../image/eslone2_hp.png" alt="えすろんのホームページ">
+  <section class="article_main">
+    <h3>はじめに</h3>
+    <p>皆さん、はじめまして。えすろんです。</p>
+    <p>先日、雑談を置くためにこのサイトを開設しました。</p>
+    <p>これからぼちぼち更新できたらな、とは思っていますが…</p>
+    <p>ということで、それでは、また！</p>
+  </section>
+
+  <section class="past_articles">
+    <h3>過去の記事</h3>
+    <p>過去の記事はありません</p>
+  </section>
+</main>
+
+<footer>
+  <p>2024 eslone2.</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('nav-list').classList.toggle('active');
+}
+</script>
+
+</body>
+</html>
