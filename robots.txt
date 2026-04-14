@@ -1,0 +1,6 @@
+# Welcome to eslone2.github.io's robots.txt
+# if you want to use my Webpage's data, please contact to yutrisky1101@gmail.com
+# Unauthorized use of content is prohibited.
+
+User-agent: *
+Disallow: /
