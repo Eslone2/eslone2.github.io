@@ -5,6 +5,50 @@
     <title>Eslone's HP - Article List</title>
     <link rel="stylesheet" href="./css/indexpage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .article-list-card {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .article-item-card {
+            background-color: #F8F9FA;
+            border: 1px solid #DDDDDD;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s;
+        }
+        .article-item-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .article-title-card {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #E0E0E0;
+            padding-bottom: 5px;
+        }
+        .article-links-card {
+            margin-top: 15px;
+        }
+        .article-links-card a {
+            display: inline-block;
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 6px 16px;
+            border-radius: 3px;
+            text-decoration: none;
+            font-size: 13px;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        .article-links-card a:hover {
+            background-color: #444444;
+        }
+    </style>
 </head>
 <body>
 
@@ -36,61 +80,54 @@
                 </button>
             </div>
         -->
-            <ul style="list-style: none; padding: 0;">
+            <ul class="article-list-card">
 
-
-                <li class="article-item" style="border-bottom: 1px solid #EEEEEE; padding: 15px 0;">
-                    <a href="./HTML/20251127_3.html" style="font-size: 18px; font-weight: bold; color: #000000; display: block;">
-                        DELL inspiron 3501をタダでいただいた話。
-                    </a>
-                    <p style="font-size: 13px; color: #666666; margin-top: 5px;">
-                        2025-11-27 — ひょんなことからいただいたDELL inspiron 3501の簡易的レビューです。
-                    </p>
+                <li class="article-item-card">
+                    <h2 class="article-title-card">DELL inspiron 3501をタダでいただいた話。</h2>
+                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-27 — ひょんなことからいただいたDELL inspiron 3501の簡易的レビューです。</p>
+                    <div class="article-links-card">
+                        <a href="./HTML/20251127_3.html">記事を読む</a>
+                    </div>
                 </li>
 
-                <li class="article-item" style="border-bottom: 1px solid #EEEEEE; padding: 15px 0;">
-                    <a href="./HTML/20251127_2.html" style="font-size: 18px; font-weight: bold; color: #000000; display: block;">
-                        【再掲】AQUOS R9の簡易的レビュー
-                    </a>
-                    <p style="font-size: 13px; color: #666666; margin-top: 5px;">
-                        2025-11-27 — AQUOS R9の簡易的レビューです。
-                    </p>
+                <li class="article-item-card">
+                    <h2 class="article-title-card">【再掲】AQUOS R9の簡易的レビュー</h2>
+                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-27 — AQUOS R9の簡易的レビューです。</p>
+                    <div class="article-links-card">
+                        <a href="./HTML/20251127_2.html">記事を読む</a>
+                    </div>
                 </li>
 
-                <li class="article-item" style="border-bottom: 1px solid #EEEEEE; padding: 15px 0;">
-                    <a href="./HTML/20251127.html" style="font-size: 18px; font-weight: bold; color: #000000; display: block;">
-                        Windowsとのおもひで
-                    </a>
-                    <p style="font-size: 13px; color: #666666; margin-top: 5px;">
-                        2025-11-27 — 自分が触ってきたWindowsをまとめました。
-                    </p>
+                <li class="article-item-card">
+                    <h2 class="article-title-card">Windowsとのおもひで</h2>
+                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-27 — 自分が触ってきたWindowsをまとめました。</p>
+                    <div class="article-links-card">
+                        <a href="./HTML/20251127.html">記事を読む</a>
+                    </div>
                 </li>
 
-                <li class="article-item" style="border-bottom: 1px solid #EEEEEE; padding: 15px 0;">
-                    <a href="./HTML/20251126_2.html" style="font-size: 18px; font-weight: bold; color: #000000; display: block;">
-                        現在の開発環境の紹介、過去のPCたち
-                    </a>
-                    <p style="font-size: 13px; color: #666666; margin-top: 5px;">
-                        2025-11-26 — 現在の開発環境と過去のPCたちをまとめました。
-                    </p>
-                </li>
-                
-                <li class="article-item" style="border-bottom: 1px solid #EEEEEE; padding: 15px 0;">
-                    <a href="./HTML/20251126.html" style="font-size: 18px; font-weight: bold; color: #000000; display: block;">
-                        自己紹介
-                    </a>
-                    <p style="font-size: 13px; color: #666666; margin-top: 5px;">
-                        2025-11-26 — Eslone2の自己紹介記事です。
-                    </p>
+                <li class="article-item-card">
+                    <h2 class="article-title-card">現在の開発環境の紹介、過去のPCたち</h2>
+                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-26 — 現在の開発環境と過去のPCたちをまとめました。</p>
+                    <div class="article-links-card">
+                        <a href="./HTML/20251126_2.html">記事を読む</a>
+                    </div>
                 </li>
 
-                <li class="article-item" style="border-bottom: 1px solid #EEEEEE; padding: 15px 0;">
-                    <a href="./HTML/20251125.html" style="font-size: 18px; font-weight: bold; color: #000000; display: block;">
-                        冬休みにやりたいことリスト
-                    </a>
-                    <p style="font-size: 13px; color: #666666; margin-top: 5px;">
-                        2025-11-25 — 冬休みにやりたいことの一覧をまとめました。
-                    </p>
+                <li class="article-item-card">
+                    <h2 class="article-title-card">自己紹介</h2>
+                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-26 — Eslone2の自己紹介記事です。</p>
+                    <div class="article-links-card">
+                        <a href="./HTML/20251126.html">記事を読む</a>
+                    </div>
+                </li>
+
+                <li class="article-item-card">
+                    <h2 class="article-title-card">冬休みにやりたいことリスト</h2>
+                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-25 — 冬休みにやりたいことの一覧をまとめました。</p>
+                    <div class="article-links-card">
+                        <a href="./HTML/20251125.html">記事を読む</a>
+                    </div>
                 </li>
                 
             </ul>
