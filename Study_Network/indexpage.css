@@ -1,0 +1,280 @@
+/* ============================================== */
+/* 1. 全体設定と基本スタイル */
+/* ============================================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: #333333;
+    background-color: #F8F8F8;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+a {
+    color: #0066CC;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: normal;
+    color: #333333;
+}
+
+/* ★★★ 変更点 1: コンテナをレスポンシブ化 ★★★ */
+.container {
+    width: 90%; /* 画面幅の90%を使用 */
+    max-width: 980px; /* 最大幅は980pxに制限 */
+    margin: 0 auto;
+    background-color: #FFFFFF;
+}
+
+/* ============================================== */
+/* 2. グローバルナビゲーション (上部のグレーのバー) */
+/* ============================================== */
+.global-nav {
+    background: linear-gradient(to bottom, #E0E0E0 0%, #CCCCCC 100%);
+    border-bottom: 1px solid #B0B0B0;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow-x: auto; /* スマホでも横スクロールでナビ全体を表示 */
+}
+.global-nav a {
+    color: #333333;
+    padding: 0 10px;
+    border-right: 1px solid #AAAAAA;
+    display: inline-block;
+    line-height: 18px;
+}
+/* ... apple-logo のCSSは省略（変更なし） ... */
+.global-nav .apple-logo {
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+    background: url('../IMG/titleimg.svg') no-repeat center center;
+    background-size: contain;
+    vertical-align: middle;
+    margin-right: 5px;
+    border-right: 1px solid #AAAAAA;
+}
+/**.global-nav a:first-child {
+    padding-left: 20px;
+    border-left: 1px solid #FFFFFF;
+}**/
+.global-nav a:last-child {
+    border-right: none;
+}
+.global-nav a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+/* ============================================== */
+/* 3. サブナビゲーション (白いバー) */
+/* ============================================== */
+.sub-nav {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DDDDDD;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow-x: auto; /* スマホでも横スクロールでナビ全体を表示 */
+}
+.sub-nav a {
+    color: #333333;
+    padding: 0 10px;
+    border-right: 1px solid #DDDDDD;
+    display: inline-block;
+    line-height: 16px;
+}
+.sub-nav a:last-child {
+    border-right: none;
+}
+.sub-nav a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+.sub-nav strong {
+    font-weight: bold;
+    color: #000000;
+}
+
+/* ============================================== */
+/* 4. メインコンテンツ (ヒーローセクション) */
+/* ============================================== */
+.hero-section {
+    background-color: #FFFFFF;
+    padding: 40px 0;
+    border-bottom: 1px solid #DDDDDD;
+    text-align: center;
+    position: relative;
+}
+
+/* ★★★ 変更点 2: メインコンテンツの折り返し設定 ★★★ */
+.hero-section .main-content {
+    display: flex;
+    flex-wrap: wrap; /* 画面が狭くなったら折り返す */
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ★★★ 変更点 3: 画像と情報の幅設定を削除（メディアクエリで制御） ★★★ */
+.hero-section .product-image {
+    flex: 0 0 auto; /* 幅指定を削除 */
+    text-align: right;
+    padding-right: 30px;
+}
+.hero-section .product-image img {
+    max-width: 100%;
+    height: auto;
+}
+.hero-section .product-info {
+    flex: 1;
+    min-width: 300px; /* 最小幅を設定し、それ未満では画像の下に配置されるようにする */
+    text-align: left;
+}
+.hero-section h1 {
+    font-size: 32px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+.hero-section p {
+    font-size: 16px;
+    color: #555555;
+    margin-bottom: 20px;
+}
+.hero-section .cta {
+    font-size: 18px;
+    color: #000000;
+    font-weight: bold;
+}
+
+/* ============================================== */
+/* 5. ニュースヘッドライン (下部のセクション) */
+/* ============================================== */
+.news-section {
+    background-color: #F8F8F8;
+    padding: 20px 0;
+    text-align: center;
+}
+.news-section h3 {
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+/* ★★★ 変更点 4: ニュースアイテムの折り返し設定 ★★★ */
+.news-items {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* 画面が狭くなったら折り返す */
+    padding: 0 20px; /* 画面端に近すぎないよう調整 */
+}
+.news-item {
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    width: 200px; 
+    flex-grow: 1; /* 画面が広ければ拡大 */
+    max-width: 280px; /* 最大幅を設けて不必要に大きくならないように */
+    padding: 10px;
+    text-align: left;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.news-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+.news-item h4 {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.news-item p {
+    font-size: 11px;
+    color: #666666;
+}
+
+/* ============================================== */
+/* 6. フッター */
+/* ============================================== */
+.footer {
+    background-color: #E0E0E0;
+    border-top: 1px solid #B0B0B0;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 10px;
+    color: #666666;
+}
+.footer a {
+    color: #0066CC;
+    margin: 0 5px;
+}
+
+/* ============================================== */
+/* ★★★ 7. メディアクエリ (スマートフォン向け調整) ★★★ */
+/* ============================================== */
+@media (max-width: 768px) {
+    
+    /* コンテナの幅を広げ、パディングを追加 */
+    .container {
+        width: 100%;
+    }
+
+    /* ヒーローセクション：画像を上に、情報を下に縦積み */
+    .hero-section {
+        padding: 30px 0;
+    }
+    .hero-section .main-content {
+        flex-direction: column; /* 縦並び */
+        padding: 0 20px;
+    }
+    .hero-section .product-image {
+        padding-right: 0;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .hero-section .product-info {
+        text-align: center; /* テキストを中央寄せ */
+        min-width: auto;
+    }
+    
+    /* フォントサイズ調整 */
+    .hero-section h1 {
+        font-size: 28px;
+    }
+    .hero-section p {
+        font-size: 14px;
+    }
+    
+    /* ニュースアイテムを1列表示に近くする */
+    .news-items {
+        flex-direction: column; /* 縦並び */
+        align-items: center;
+    }
+    .news-item {
+        width: 90%;
+        max-width: 400px;
+        margin-bottom: 15px;
+    }
+    
+    /* グローバルナビゲーションをよりコンパクトに */
+    .global-nav a {
+        padding: 0 8px;
+    }
+    
+}

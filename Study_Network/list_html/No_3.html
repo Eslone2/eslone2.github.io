@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Eslone's HP - ネットワーク構築 講習会（第三回）</title>
+    <link rel="stylesheet" href="../../css/indexpage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        table th, table td {
+            border: 1px solid #DDDDDD;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #F2F2F2;
+            font-weight: bold;
+        }
+        .note {
+            background-color: #FFF9C4;
+            border-left: 5px solid #FBC02D;
+            padding: 10px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .concept-box {
+            background-color: #E3F2FD;
+            border: 1px solid #90CAF9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .concept-box h4 {
+            margin-top: 0;
+            color: #1565C0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="global-nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../articlelist.html">Blogs</a>
+        <a href="https://lit.link/eslone_mots2">Contact</a>
+        <a href="https://github.com/Eslone2">Codes</a>
+    </div>
+
+    <div class="sub-nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../articlelist.html">Blog Home</a>
+    </div>
+
+    <div class="container">
+        <div class="blog-post" style="padding: 40px 60px;">
+            
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+                💻 ネットワーク構築 講習会（第三回）
+            </h1>
+            
+            <p style="font-size: 11px; color: #666;">
+                Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">講習会資料</a>
+            </p>
+
+            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+
+            <div class="post-content" style="font-size: 14px; margin-top: 30px;">
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 今回の最終目標</h2>
+                <ul>
+                    <li>無線LANの規格や、アクセスポイント(AP)とルーター(RT)の違いを理解する。</li>
+                    <li>安全な通信に欠かせない「暗号化（公開鍵・秘密鍵）」の仕組みを理解する。</li>
+                </ul>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📶 1. 無線LANの規格「IEEE802.11」とは？</h2>
+                <p>スマートフォンやPCをWi-Fiに繋ぐとき、裏側では<strong>「IEEE802.11（アイトリプルイー はちまるにー てん いちいち）」</strong>という通信規格（ルール）が使われています。</p>
+                
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">周波数帯の違い（2.4GHz / 5GHz / 6GHz）</h3>
+                <p>Wi-Fiには主に3つの電波の通り道（周波数帯）があります。</p>
+                <ul>
+                    <li><strong>2.4GHz帯：</strong> 障害物（壁など）に強いが、電子レンジやBluetoothと干渉しやすく速度が遅め。</li>
+                    <li><strong>5GHz帯：</strong> 速度が速く他の家電と干渉しにくいが、障害物に弱く遠くまで届きにくい。</li>
+                    <li><strong>6GHz帯：</strong> 近年追加された新しい帯域。まだ利用者が少なく混雑していないため、超高速かつ安定した通信が可能。障害物には一番弱い。</li>
+                </ul>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">代表的な規格の進化</h3>
+                <p>技術の進歩に合わせて、規格の末尾のアルファベットが変わります。最近では分かりやすく「Wi-Fi 〇」という数字で呼ばれることも増えました。</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>規格名</th>
+                            <th>分かりやすい名称</th>
+                            <th>特徴・周波数帯</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>IEEE 802.11n</td>
+                            <td>Wi-Fi 4</td>
+                            <td>2.4GHz / 5GHz 両対応。一昔前の標準。</td>
+                        </tr>
+                        <tr>
+                            <td>IEEE 802.11ac</td>
+                            <td>Wi-Fi 5</td>
+                            <td>5GHz 専用。通信速度が劇的に向上。</td>
+                        </tr>
+                        <tr>
+                            <td>IEEE 802.11ax</td>
+                            <td>Wi-Fi 6</td>
+                            <td>2.4GHz / 5GHz 両対応。複数台の同時接続に非常に強い。現在の主流。</td>
+                        </tr>
+                        <tr>
+                            <td>IEEE 802.11ax</td>
+                            <td>Wi-Fi 6E</td>
+                            <td>Wi-Fi 6の拡張版。新たに<strong>6GHz帯</strong>にも対応し、より安定した超高速通信が可能に。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IEEE 802.11be</strong></td>
+                            <td><strong>Wi-Fi 7</strong></td>
+                            <td>2.4GHz / 5GHz / 6GHz 全対応。次世代の最高速規格で、複数の周波数帯を同時に束ねて使うこと（MLO）が可能。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔄 2. ルーター(RT)とアクセスポイント(AP)の違い</h2>
+                <p>ネットワーク機器の話でよく混同されるのが「ルーター」と「アクセスポイント」です。それぞれの本当の役割を確認しましょう。</p>
+
+                <div class="concept-box">
+                    <h4>🌐 ルーター (Router / RT)</h4>
+                    <p><strong>役割：異なるネットワーク同士を繋ぐ案内役（レイヤ3）</strong></p>
+                    <p>「インターネットの世界」と「家の中のネットワーク（LAN）」を繋ぐための機器です。接続してきた端末にIPアドレスを配る機能（DHCP）なども持っています。<strong>無線（Wi-Fi）を飛ばす機能は本来持っていません。</strong></p>
+                </div>
+
+                <div class="concept-box">
+                    <h4>📡 アクセスポイント (Access Point / AP)</h4>
+                    <p><strong>役割：無線端末をネットワークに参加させる「橋渡し」（レイヤ2）</strong></p>
+                    <p>有線のLANケーブルを無線の電波に変換し、スマホやPCをネットワークに参加させる機器です。言わば「無線版のスイッチ（ハブ）」です。<strong>IPアドレスを配ったり、インターネットへ繋ぐ機能は持っていません。</strong></p>
+                </div>
+
+                <div class="note">
+                    <strong>💡 家庭用「Wi-Fiルーター」の真実：</strong><br>
+                    皆さんの家にある「Wi-Fiルーター」は、実は<strong>【ルーター機能】＋【AP機能】＋【スイッチ機能】</strong>が1つの箱に合体した非常に便利な複合機なのです。企業などでは、ルーターとAPを別々の機器として設置するのが一般的です。
+                </div>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔒 3. 暗号化の基礎知識：情報を安全に送るために</h2>
+                <p>インターネット上では、データはバケツリレーのように様々な機器を経由して届きます。そのまま（平文）で送ると途中で盗み見られる危険があるため、<strong>「暗号化」</strong>が欠かせません。</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">共通鍵暗号方式</h3>
+                <p>データを「ロックする鍵」と「開ける鍵」が<strong>同じ</strong>方式です。処理スピードが速いですが、「遠くにいる相手に、どうやってその鍵を安全に渡すか？」という大きな問題があります。</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">公開鍵暗号方式（重要！）</h3>
+                <p>この問題を解決したのが公開鍵暗号方式です。ここでは<strong>「公開鍵」</strong>と<strong>「秘密鍵」</strong>という2つのペアの鍵を使います。</p>
+                <ul>
+                    <li><strong>公開鍵（誰でも使える南京錠）：</strong> 誰に渡してもOKな、データをロックするためだけの鍵。</li>
+                    <li><strong>秘密鍵（自分しか持っていない鍵）：</strong> ロックを開けることができる世界で唯一の鍵。絶対に他人に渡してはいけない。</li>
+                </ul>
+                <p><strong>【仕組み】</strong><br>
+                AさんがBさんに秘密のメッセージを送りたい場合、AさんはBさんが配っている「Bさんの公開鍵（南京錠）」でメッセージをロックして送ります。この南京錠は、Bさんが持っている「Bさんの秘密鍵」でしか開けられないため、途中で誰かに盗まれても中身は見られません！</p>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔑 4. 身近な暗号化の例</h2>
+                
+                <p><strong>① Webサイトの閲覧（HTTPS）</strong><br>
+                URLが <code>https://</code> で始まり、ブラウザに「鍵マーク」がついているサイトは、通信が暗号化されています。クレジットカード情報などを送っても安全なのはこの技術のおかげです。</p>
+
+                <p><strong>② ネットワーク機器への接続（SSH）</strong><br>
+                第2回の講習会で「Teraterm」を使ってネットワーク機器に接続しましたが、この時によく使われるのが <strong>SSH（Secure Shell）</strong> という接続方法です。これも「公開鍵暗号方式」などを組み合わせており、パスワードや操作コマンドを暗号化して安全に機器を操作できる仕組みになっています。</p>
+
+                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+
+                <p style="text-align: center; font-size: 13px;">
+                    <a href="No_2.html">&larr; 第二回へ</a> | <a href="../../index.html">ホームに戻る</a> | <a href="No_4.html">第四回へ &rarr;</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Copyright © 2024-2025 eslone2. All rights reserved.
+        <br>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="mailto:yutrisky1101@gmail.com">Contact Us</a>
+    </div>
+
+</body>
+</html>

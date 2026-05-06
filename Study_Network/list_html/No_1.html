@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Eslone's HP - ネットワーク構築 講習会（第一回）</title>
+    <link rel="stylesheet" href="../../css/indexpage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        table th, table td {
+            border: 1px solid #DDDDDD;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #F2F2F2;
+            font-weight: bold;
+        }
+        .note {
+            background-color: #FFF9C4;
+            border-left: 5px solid #FBC02D;
+            padding: 10px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .answer-section {
+            background-color: #E8F5E9;
+            border: 1px solid #C8E6C9;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="global-nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../articlelist.html">Blogs</a>
+        <a href="https://lit.link/eslone_mots2">Contact</a>
+        <a href="https://github.com/Eslone2">Codes</a>
+    </div>
+
+    <div class="sub-nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../articlelist.html">Blog Home</a>
+    </div>
+
+    <div class="container">
+        <div class="blog-post" style="padding: 40px 60px;">
+            
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+                💻 ネットワーク構築 講習会（第一回）
+            </h1>
+            
+            <p style="font-size: 11px; color: #666;">
+                Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">講習会資料</a>
+            </p>
+
+            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+
+            <div class="post-content" style="font-size: 14px; margin-top: 30px;">
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 今回の最終目標</h2>
+                <ul>
+                    <li>IPアドレスやサブネットマスク、ネットワークアドレスの仕組みとは？</li>
+                    <li>ネットワーク内で、ルータやL2スイッチはどのような役割を果たしている？</li>
+                </ul>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📥 メインの話に入る前に…</h2>
+                <p>皆さんのPC（特にWindows）に<strong>"Teraterm"</strong>が入っているか確認します。</p>
+                <p>無ければ<a href="https://github.com/TeraTermProject/teraterm/releases"><strong>こちら</strong></a>からダウンロードとインストールを行って下さい！</p>
+                
+                <div class="note">
+                    <strong>注意：</strong> 第２回以降で使用する予定です！！消さないでね！！
+                </div>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🌐 IPアドレスやサブネットマスク、ネットワークアドレスの仕組み</h2>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">IPアドレスの仕組み</h3>
+                <p>IPアドレスとは、（ざっくり言うと）<strong>インターネット上の住所</strong>のようなものです！また、通信が出来なくなるので<strong>IPアドレスは絶対に重複させてはいけない</strong>です！</p>
+                
+                <p>例えば…</p>
+                <ul>
+                    <li>手紙を送った人：青森県青森市XX町x丁目x-x</li>
+                    <li>手紙を受け取る人：青森県八戸市xx町x丁目x-x</li>
+                </ul>
+                <p>だったとして、この住所をIPアドレスに置き換えると…</p>
+                <ul>
+                    <li>データを送る機器：<code>172.155.10.1</code></li>
+                    <li>データを受け取る機器：<code>153.128.11.1</code></li>
+                </ul>
+                <p>という感じです（細かな違いはありますが）。</p>
+                <div class="note" style="font-size: 12px; border-left: 5px solid #CCC; background-color: #F9F9F9;">
+                    ※ここでの説明は基本<strong>IPv4</strong>で説明していきます。<strong>IPv6</strong>はそのうち説明します！（<strong>IPv4</strong>は32bitで動作します）
+                </div>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">ネットワーク部とホスト部</h3>
+                <ul>
+                    <li><strong>ネットワーク部</strong>とは、<strong>どのネットワークに所属しているかを示す数字です</strong>！アパートで言う「〇〇ヒルツ」です（例：<strong>172.155.10</strong>.1）。</li>
+                    <li><strong>ホスト部</strong>は、<strong>上記のネットワーク内の、どの特定のデバイスかを示す数字です</strong>！アパートで言う「xxx号室」の所です（例：172.155.10.<strong>1</strong>）。</li>
+                </ul>
+                <p>参考：<a href="https://wa3.i-3-i.info/word172.html">IPアドレス-「分かりそう」で「分からない」でも「分かった」気になれるIT用語辞典</a></p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">サブネットマスクの仕組み</h3>
+                <p>サブネットマスクとは、<strong>ネットワーク部とホスト部の区分け方の説明書</strong>です。</p>
+                <p>参考：<a href="https://wa3.i-3-i.info/word11975.html">サブネットマスク-「分かりそう」で「分からない」でも「分かった」気になれるIT用語辞典</a></p>
+                <p>例えば、サブネットマスクが「<code>255.255.255.0</code>」だったとします。これを<strong>2進法</strong>に変換すると「<code>11111111.11111111.11111111.00000000</code>」になります。</p>
+                <ul>
+                    <li>これの「<strong>11111111.11111111.11111111</strong>.00000000」の部分が<strong>ネットワーク部</strong>です。</li>
+                    <li>これの「11111111.11111111.11111111.<strong>00000000</strong>」の部分が<strong>ホスト部</strong>です。</li>
+                </ul>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📝 練習問題：ネットワーク部とホスト部の分離</h2>
+                <p>では、実際にネットワーク部とホスト部を分けてみましょう。</p>
+                <ol>
+                    <li>サブネットマスクが <code>255.255.0.0</code> のときの IPアドレス <code>192.168.0.2</code></li>
+                    <li>サブネットマスクが <code>11111111.00000000.00000000.00000000</code> (2進法) のときの IPアドレス <code>192.168.163.1</code></li>
+                </ol>
+
+                <div class="answer-section">
+                    <h3 style="font-size: 16px; margin-top: 0; color: #2E7D32; font-weight: bold;">✅ 答え</h3>
+                    <ol>
+                        <li><strong>IPアドレス</strong>：<code>192.168.0.2</code> / <strong>サブネットマスク</strong>：<code>255.255.0.0</code>
+                            <ul>
+                                <li><strong>ネットワーク部</strong>：<code>192.168</code></li>
+                                <li><strong>ホスト部</strong>：<code>0.2</code></li>
+                            </ul>
+                        </li>
+                        <li><strong>IPアドレス</strong>：<code>192.168.163.1</code> / <strong>サブネットマスク（10進法）</strong>：<code>255.0.0.0</code>
+                            <ul>
+                                <li><strong>ネットワーク部</strong>：<code>192</code></li>
+                                <li><strong>ホスト部</strong>：<code>168.163.1</code></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📡 ネットワーク内でのルータとL2スイッチの役割</h2>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">L2スイッチ (レイヤ2スイッチ) の仕組み</h3>
+                <p>L2スイッチは、主に<strong>同じネットワーク内</strong>で通信を行う機器です。</p>
+                <ul>
+                    <li><strong>役割：</strong> データを<strong>同じネットワーク</strong>に所属する機器に届ける。</li>
+                    <li><strong>判断基準：</strong> データの宛先となる機器の <strong>MACアドレス</strong> を見て判断します。</li>
+                </ul>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">ルータ (レイヤ3スイッチ/ルータ) の仕組み</h3>
+                <p>ルータは、主に<strong>異なるネットワーク間</strong>で通信を行う機器です。</p>
+                <ul>
+                    <li><strong>役割：</strong> データを<strong>異なるネットワーク</strong>間で中継し、最適な経路に送り出す。</li>
+                    <li><strong>判断基準：</strong> データの宛先となる機器の <strong>IPアドレス</strong> を見て判断します。</li>
+                </ul>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>機器の種類</th>
+                            <th>処理するレイヤ</th>
+                            <th>判断基準</th>
+                            <th>主な役割</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>L2スイッチ</strong></td>
+                            <td>レイヤ2</td>
+                            <td>MACアドレス</td>
+                            <td><strong>同一ネットワーク内</strong>の通信</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ルータ</strong></td>
+                            <td>レイヤ3</td>
+                            <td>IPアドレス</td>
+                            <td><strong>異なるネットワーク間</strong>の通信</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+
+                <p style="text-align: center; font-size: 13px;">
+                    <a href="../../index.html">ホームに戻る</a> | <a href="No_2.html">第二回へ &rarr;</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Copyright © 2024-2025 eslone2. All rights reserved.
+        <br>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="mailto:yutrisky1101@gmail.com">Contact Us</a>
+    </div>
+
+</body>
+</html>

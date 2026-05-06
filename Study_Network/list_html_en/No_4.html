@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eslone's HP - Network Construction Workshop (Session 4)</title>
+    <link rel="stylesheet" href="../../css/indexpage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .note {
+            background-color: #FFF9C4;
+            border-left: 5px solid #FBC02D;
+            padding: 10px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .concept-box {
+            background-color: #E8F5E9;
+            border: 1px solid #81C784;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .concept-box h4 {
+            margin-top: 0;
+            color: #2E7D32;
+            font-weight: bold;
+        }
+        .alert-box {
+            background-color: #FFEBEE;
+            border: 1px solid #E57373;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .alert-box h4 {
+            margin-top: 0;
+            color: #C62828;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="global-nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../articlelist.html">Blogs</a>
+        <a href="https://lit.link/eslone_mots2">Contact</a>
+        <a href="https://github.com/Eslone2">Codes</a>
+    </div>
+
+    <div class="sub-nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../articlelist.html">Blog Home</a>
+    </div>
+
+    <div class="container">
+        <div class="blog-post" style="padding: 40px 60px;">
+            
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+                💻 Network Construction Workshop (Session 4)
+            </h1>
+            
+            <p style="font-size: 11px; color: #666;">
+                Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">Workshop Materials</a>
+            </p>
+
+            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+
+            <div class="post-content" style="font-size: 14px; margin-top: 30px;">
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 Final Goals for this Session</h2>
+                <ul>
+                    <li>Understand the decisive differences between home Access Points (APs) and enterprise APs.</li>
+                    <li>Understand the risks of public wireless LANs and the mechanisms of secure roaming technologies like eduroam and OpenRoaming.</li>
+                </ul>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🏢 1. Decisive Differences Between Home APs and Enterprise APs</h2>
+                <p>In Session 3, we learned about "Access Points (APs)", but there is actually a huge difference between the "home" versions sold in electronics stores and the "enterprise" versions used in companies and universities.</p>
+
+                <div class="concept-box">
+                    <h4>🏠 Home AP (Wi-Fi Router)</h4>
+                    <p>Designed for a few to a dozen users. Setup is simple, and it basically operates as a standalone unit. It generally gets power from a wall outlet.</p>
+                </div>
+
+                <div class="concept-box">
+                    <h4>🏢 Enterprise AP</h4>
+                    <p>Includes features designed to prevent business interruptions.</p>
+                    <ul>
+                        <li><strong>High Processing Capacity:</strong> Can withstand simultaneous connections from dozens to hundreds of devices.</li>
+                        <li><strong>PoE (Power over Ethernet) Support:</strong> Can receive power along with data via LAN cables, allowing installation in places without power outlets, such as ceilings.</li>
+                        <li><strong>Centralized Management:</strong> Dozens or hundreds of APs can be configured and managed collectively using a device called a "Wireless LAN Controller".</li>
+                        <li><strong>VLAN Support and Multiple SSIDs:</strong> A single AP can simultaneously broadcast multiple Wi-Fi networks (SSIDs) with different purposes, such as "Employee Wi-Fi" and "Guest Wi-Fi", securely separating the internal networks (VLAN).</li>
+                    </ul>
+                </div>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📶 2. General Wireless LANs and Public Wireless LANs (Free Wi-Fi)</h2>
+                <p>Public wireless LANs (Free Wi-Fi) found in cafes and stations are convenient, but they have different features and risks compared to home Wi-Fi.</p>
+
+                <p><strong>Pros:</strong> Anyone can easily and freely access the internet, helping to save smartphone mobile data on the go.</p>
+
+                <div class="alert-box">
+                    <h4>⚠️ Cons (Hidden Risks)</h4>
+                    <ul>
+                        <li><strong>Encryption Vulnerability:</strong> If there is no password (Open) or everyone uses the same "shared password" posted in the store, intercepted radio waves can allow attackers to easily steal communication contents.</li>
+                        <li><strong>Spoofed APs (Evil Twin):</strong> Attackers may set up a "fake AP" with the exact same name (SSID) as the real Free Wi-Fi to steal communication contents and passwords of people who accidentally connect to it.</li>
+                    </ul>
+                </div>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🛡️ 3. Secure and Seamless Wi-Fi: eduroam and OpenRoaming</h2>
+                <p>There are groundbreaking technologies that eliminate the risks of public Wi-Fi and allow you to use Wi-Fi securely anywhere.</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">🎓 What is eduroam?</h3>
+                <p>An international Wi-Fi roaming infrastructure used by educational and research institutions like universities. Once you configure your university's ID and password (or certificate) on your device, you can automatically and securely connect to Wi-Fi even when visiting other participating universities worldwide.</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">🌍 What is OpenRoaming?</h3>
+                <p>A global initiative to expand the "convenient and secure mechanism" of eduroam beyond universities to general commercial facilities and city-wide Free Wi-Fi.</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Why are these Wi-Fi networks secure? (Enterprise Authentication)</h3>
+                <p>eduroam and OpenRoaming do not use a "shared password for everyone" like home Wi-Fi. Instead, they use a mechanism called <strong>"802.1X Authentication (WPA2/WPA3-Enterprise)"</strong>.</p>
+                <ul>
+                    <li>Authentication and encryption are performed using <strong>individual user IDs/passwords or digital certificates</strong>.</li>
+                    <li>Therefore, there is no worry about others on the same Wi-Fi snooping on your communications.</li>
+                    <li>Because the device also verifies if the server has the correct certificate, the risk of connecting to a spoofed AP is extremely low.</li>
+                </ul>
+                <p>This is an advanced, highly secure feature unique to Enterprise APs!</p>
+
+                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+
+                <p style="text-align: center; font-size: 13px;">
+                    <a href="No_3.html">&larr; Go to Session 3</a> | <a href="../../index.html">Return to Home</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Copyright © 2024-2025 eslone2. All rights reserved.
+        <br>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="mailto:yutrisky1101@gmail.com">Contact Us</a>
+    </div>
+
+</body>
+</html>

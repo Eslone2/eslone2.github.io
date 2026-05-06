@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Eslone's HP - ネットワーク構築 講習会（第四回）</title>
+    <link rel="stylesheet" href="../../css/indexpage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .note {
+            background-color: #FFF9C4;
+            border-left: 5px solid #FBC02D;
+            padding: 10px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .concept-box {
+            background-color: #E8F5E9;
+            border: 1px solid #81C784;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .concept-box h4 {
+            margin-top: 0;
+            color: #2E7D32;
+            font-weight: bold;
+        }
+        .alert-box {
+            background-color: #FFEBEE;
+            border: 1px solid #E57373;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .alert-box h4 {
+            margin-top: 0;
+            color: #C62828;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="global-nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../articlelist.html">Blogs</a>
+        <a href="https://lit.link/eslone_mots2">Contact</a>
+        <a href="https://github.com/Eslone2">Codes</a>
+    </div>
+
+    <div class="sub-nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../articlelist.html">Blog Home</a>
+    </div>
+
+    <div class="container">
+        <div class="blog-post" style="padding: 40px 60px;">
+            
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+                💻 ネットワーク構築 講習会（第四回）
+            </h1>
+            
+            <p style="font-size: 11px; color: #666;">
+                Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">講習会資料</a>
+            </p>
+
+            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+
+            <div class="post-content" style="font-size: 14px; margin-top: 30px;">
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 今回の最終目標</h2>
+                <ul>
+                    <li>家庭用と業務用のアクセスポイント(AP)の決定的な違いを理解する。</li>
+                    <li>公衆無線LANのリスクと、eduroamやOpenRoamingなどのセキュアなローミング技術の仕組みを理解する。</li>
+                </ul>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🏢 1. 家庭用APと業務用APの決定的な違い</h2>
+                <p>第3回で「アクセスポイント（AP）」について学びましたが、実は家電量販店で売っている「家庭用」と、企業や大学で使われる「業務用」では大きな違いがあります。</p>
+
+                <div class="concept-box">
+                    <h4>🏠 家庭用AP（Wi-Fiルーター）</h4>
+                    <p>数人〜十数人での利用を想定しています。設定がシンプルで、基本的には1台単独で動作します。コンセントから電源を取るのが一般的です。</p>
+                </div>
+
+                <div class="concept-box">
+                    <h4>🏢 業務用AP（エンタープライズAP）</h4>
+                    <p>業務を止めないための機能が盛り込まれています。</p>
+                    <ul>
+                        <li><strong>高い処理能力：</strong> 数十〜数百台の同時接続に耐えられます。</li>
+                        <li><strong>PoE（Power over Ethernet）対応：</strong> LANケーブルからデータと一緒に電力も受け取れるため、コンセントがない天井などにも設置できます。</li>
+                        <li><strong>集中管理：</strong> 「無線LANコントローラ」という機器を使い、何十台・何百台ものAPを一括で設定・管理できます。</li>
+                        <li><strong>VLAN対応と複数SSID：</strong> 1つのAPから「社員用Wi-Fi」と「来客用Wi-Fi」など複数の電波（SSID）を同時に出し、内部のネットワークを安全に分離（VLAN）できます。</li>
+                    </ul>
+                </div>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📶 2. 一般的な無線LANと公衆無線LAN（フリーWi-Fi）</h2>
+                <p>街中にあるカフェや駅の公衆無線LAN（フリーWi-Fi）は便利ですが、家庭用Wi-Fiとは異なる特徴とリスクがあります。</p>
+
+                <p><strong>利点：</strong> 誰でも無料で手軽にインターネットにアクセスでき、外出先でのスマートフォンの通信量（ギガ）節約に役立ちます。</p>
+
+                <div class="alert-box">
+                    <h4>⚠️ 欠点（潜むリスク）</h4>
+                    <ul>
+                        <li><strong>暗号化の脆弱性：</strong> パスワードがない（Open）、または店舗に貼られた「全員共通のパスワード」を使う場合、電波を傍受されると通信内容を簡単に盗み見られてしまう危険性があります。</li>
+                        <li><strong>なりすましAP（悪魔の双子）：</strong> 攻撃者が本物のフリーWi-Fiと全く同じ名前（SSID）の「偽のAP」を設置し、そこに接続してしまった人の通信内容や入力したパスワードを盗み取る手口が存在します。</li>
+                    </ul>
+                </div>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🛡️ 3. 安全でシームレスなWi-Fi：eduroam と OpenRoaming</h2>
+                <p>先ほどのような公衆Wi-Fiのリスクを排除し、安全にどこでもWi-Fiを使えるようにする画期的な技術があります。</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">🎓 eduroam（エデュローム）とは？</h3>
+                <p>大学などの教育・研究機関で使われる国際的なWi-Fiローミング基盤です。所属する大学のIDとパスワード（または証明書）を端末に一度設定しておけば、世界中の他のeduroam参加大学に出向いても、自動的かつ安全にWi-Fiに接続できます。</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">🌍 OpenRoaming（オープンローミング）とは？</h3>
+                <p>eduroamの「便利で安全な仕組み」を、大学だけでなく一般の商業施設や街中のフリーWi-Fiにも広げようという世界的な取り組みです。</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">なぜこれらのWi-Fiは安全なのか？（エンタープライズ認証）</h3>
+                <p>eduroamやOpenRoamingでは、家庭用Wi-Fiのような「全員共通のパスワード」を使いません。代わりに<strong>「802.1X認証（WPA2/WPA3-Enterprise）」</strong>という仕組みを使います。</p>
+                <ul>
+                    <li>ユーザー<strong>個別のID/パスワードや電子証明書</strong>を使って認証と暗号化を行います。</li>
+                    <li>そのため、同じWi-Fiに繋いでいる他の人に通信を盗み見られる心配がありません。</li>
+                    <li>サーバー側も正しい証明書を持っているか確認するため、なりすましAPに引っかかるリスクも極めて低くなります。</li>
+                </ul>
+                <p>これはまさに、業務用AP（エンタープライズAP）ならではの高度でセキュアな機能です！</p>
+
+                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+
+                <p style="text-align: center; font-size: 13px;">
+                    <a href="No_3.html">&larr; 第三回へ</a> | <a href="../../index.html">ホームに戻る</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Copyright © 2024-2025 eslone2. All rights reserved.
+        <br>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="mailto:yutrisky1101@gmail.com">Contact Us</a>
+    </div>
+
+</body>
+</html>
