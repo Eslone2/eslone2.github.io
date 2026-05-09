@@ -166,6 +166,13 @@ h1, h2, h3, h4, h5, h6 {
     border-right: none;
     padding-right: 0;
 }
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-heading);
+    user-select: none;
+}
 .nav-right a:hover {
     color: var(--link-nav-hover);
     text-decoration: none;
@@ -582,19 +589,49 @@ table th {
         margin-bottom: 20px;
     }
     .global-nav {
-        flex-direction: column;
-        padding: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
     }
     .nav-left {
-        margin-bottom: 10px;
+        margin-bottom: 0;
+    }
+    .nav-left strong {
+        font-size: 20px;
+    }
+    .menu-toggle {
+        display: block;
     }
     .nav-right {
+        display: none;
         width: 100%;
-        overflow-x: auto;
+        flex-direction: column;
         text-align: center;
+        margin-top: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--bg-nav);
+        z-index: 1000;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-bottom: 1px solid var(--border-nav);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-right.active {
+        display: flex;
     }
     .nav-right a {
-        padding: 0 10px;
+        padding: 12px 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        display: block;
+    }
+    .nav-right a:last-child {
+        border-bottom: none;
     }
     .footer-content {
         flex-direction: column;

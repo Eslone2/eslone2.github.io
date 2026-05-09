@@ -42,6 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if (themeSwitchText) themeSwitchText.textContent = isNowDark ? "Dark Mode" : "Light Mode";
         });
     }
+
+    // 3. モバイル用ハンバーガーメニューの開閉ロジック
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navRight = document.querySelector('.nav-right');
+    if (menuToggle && navRight) {
+        menuToggle.addEventListener('click', () => {
+            const isActive = navRight.classList.toggle('active');
+            menuToggle.textContent = isActive ? '✕' : '☰';
+        });
+    }
 });
 
 // ページ内の画像等すべての読み込みが完了した後
