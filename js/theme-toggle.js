@@ -1,4 +1,4 @@
-(function() {
+(function () {
     // FOUC防止のため、テーマを最速で適用する
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
@@ -49,7 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (menuToggle && navRight) {
         menuToggle.addEventListener('click', () => {
             const isActive = navRight.classList.toggle('active');
-            menuToggle.textContent = isActive ? '✕' : '☰';
+            // アイコンの切り替え
+            menuToggle.innerHTML = isActive ? '✕' : '☰';
+
+            // メニューが開いているときはスクロールを禁止、閉じているときは許可
+            if (isActive) {
+                document.documentElement.style.overflow = 'hidden';
+            } else {
+                document.documentElement.style.overflow = '';
+            }
         });
     }
 });
