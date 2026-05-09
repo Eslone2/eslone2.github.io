@@ -49,17 +49,17 @@
 </head>
 <body>
 
-    <div class="global-nav">
-        <a href="../index.html">Home</a>
-        <a href="../articlelist.html">Blogs</a>
-        <a href="https://lit.link/eslone_mots2">Contact</a>
-        <a href="https://github.com/Eslone2">Codes</a>
-        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
-    </div>
-
-    <div class="sub-nav">
-        <a href="../index.html">Home</a>
-        <a href="./index.html">ネットワーク講習会</a>
+        <div class="global-nav">
+        <div class="nav-left">
+            <strong><a href="../index.html">えすろんのホームページ</a></strong>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html">Home</a>
+            <a href="../articlelist.html">Blogs</a>
+            <a href="../Study_Network/index.html">Network</a>
+            <a href="https://lit.link/eslone_mots2">Contact</a>
+            <a href="https://github.com/Eslone2">Codes</a>
+        </div>
     </div>
 
     <div class="container">
@@ -119,11 +119,21 @@
         </div>
     </div>
 
-    <div class="footer">
-        Copyright © 2024-2025 eslone2. All rights reserved.
-        <br>
-        <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="mailto:yutrisky1101@gmail.com">Contact Us</a>
+        <div class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                Copyright &copy; 2024-2025 eslone2. All rights reserved.
+            </div>
+            <div class="footer-right">
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="themeToggleCheckbox">
+                        <input type="checkbox" id="themeToggleCheckbox" />
+                        <div class="slider round"></div>
+                    </label>
+                    <span class="theme-switch-text" id="themeSwitchText">Light Mode</span>
+                </div>
+            </div>
+        </div>
     </div>
-
 </body>
 </html>

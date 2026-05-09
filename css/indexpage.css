@@ -106,17 +106,27 @@ h1, h2, h3, h4, h5, h6 {
 /* 2. グローバルナビゲーション (上部のグレーのバー) */
 /* ============================================== */
 .global-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: var(--bg-nav);
     border-bottom: 1px solid var(--border-nav);
-    padding: 10px 0;
-    text-align: center;
+    padding: 10px 20px;
     font-size: 13px;
     white-space: nowrap;
     overflow-x: auto;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
-.global-nav a {
+.nav-left strong {
+    font-size: 16px;
+    color: var(--text-heading);
+}
+.nav-left a {
+    color: inherit;
+    text-decoration: none;
+}
+.nav-right a {
     color: var(--link-nav);
     padding: 0 15px;
     border-right: 1px solid var(--border-color);
@@ -124,69 +134,75 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 18px;
     font-weight: 600;
 }
-.global-nav .apple-logo {
-    display: inline-block;
-    width: 16px;
-    height: 18px;
-    background: url('../IMG/titleimg.svg') no-repeat center center;
-    background-size: contain;
-    vertical-align: middle;
-    margin-right: 5px;
-    border-right: 1px solid var(--border-color);
-}
-.global-nav a:last-child {
+.nav-right a:last-child {
     border-right: none;
+    padding-right: 0;
 }
-.global-nav a:hover {
+.nav-right a:hover {
     color: var(--link-nav-hover);
     text-decoration: none;
 }
-.theme-toggle {
-    background: none;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 0 5px;
-    margin-left: 10px;
-    vertical-align: middle;
-    transition: transform 0.2s ease;
+/* ============================================== */
+/* スライド式テーマスイッチ */
+/* ============================================== */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
 }
-.theme-toggle:hover {
-    transform: scale(1.15);
+.theme-switch-text {
+    margin-left: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-heading);
+}
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+input:checked + .slider {
+    background-color: #333;
+}
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+.slider.round {
+    border-radius: 24px;
+}
+.slider.round:before {
+    border-radius: 50%;
 }
 
 /* ============================================== */
 /* 3. サブナビゲーション (白いバー) */
 /* ============================================== */
-.sub-nav {
-    background-color: var(--bg-subnav);
-    border-bottom: 1px solid var(--border-color);
-    padding: 12px 0;
-    text-align: center;
-    font-size: 13px;
-    white-space: nowrap;
-    overflow-x: auto;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-.sub-nav a {
-    color: var(--link-nav);
-    padding: 0 15px;
-    border-right: 1px solid var(--border-color);
-    display: inline-block;
-    line-height: 16px;
-}
-.sub-nav a:last-child {
-    border-right: none;
-}
-.sub-nav a:hover {
-    color: var(--link-nav-hover);
-    text-decoration: none;
-}
-.sub-nav strong {
-    font-weight: 600;
-    color: var(--text-heading);
-}
+/* 3. サブナビゲーションは削除済み */
 
 /* ============================================== */
 /* 4. メインコンテンツ (ヒーローセクション) */
@@ -373,17 +389,26 @@ h1, h2, h3, h4, h5, h6 {
 .footer {
     background-color: var(--bg-footer);
     border-top: 1px solid var(--border-nav);
-    padding: 30px 0;
-    text-align: center;
-    font-size: 12px;
+    padding: 20px 0;
+    font-size: 13px;
     color: var(--text-muted);
     transition: background-color 0.3s ease;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
-.footer a {
-    color: var(--link-color);
-    margin: 0 5px;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.footer-left {
+    text-align: left;
+}
+.footer-right {
+    text-align: right;
 }
 
 /* ============================================== */
@@ -454,7 +479,30 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 400px;
         margin-bottom: 20px;
     }
-    .global-nav a {
+    .global-nav {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .nav-left {
+        margin-bottom: 10px;
+    }
+    .nav-right {
+        width: 100%;
+        overflow-x: auto;
+        text-align: center;
+    }
+    .nav-right a {
         padding: 0 10px;
+    }
+    .footer-content {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .footer-left, .footer-right {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .footer-right {
+        margin-bottom: 0;
     }
 }

@@ -21,17 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // ロード中はスクロールを無効化
     document.documentElement.style.overflow = "hidden";
 
-    // 2. テーマ切り替えボタンのセットアップ
-    const themeToggleBtn = document.getElementById("themeToggle");
+    // 2. テーマ切り替えスイッチのセットアップ
+    const themeToggleCheckbox = document.getElementById("themeToggleCheckbox");
+    const themeSwitchText = document.getElementById("themeSwitchText");
     const htmlElement = document.documentElement;
 
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener("click", () => {
-            const currentTheme = htmlElement.getAttribute("data-theme");
-            const newTheme = currentTheme === "dark" ? "light" : "dark";
-            
+    if (themeToggleCheckbox) {
+        // 現在のテーマに合わせてチェックボックスとテキストを初期化
+        const currentTheme = htmlElement.getAttribute("data-theme");
+        const isDark = currentTheme === "dark";
+        themeToggleCheckbox.checked = isDark;
+        if (themeSwitchText) themeSwitchText.textContent = isDark ? "Dark Mode" : "Light Mode";
+
+        // チェックボックスの変更イベント
+        themeToggleCheckbox.addEventListener("change", (e) => {
+            const isNowDark = e.target.checked;
+            const newTheme = isNowDark ? "dark" : "light";
             htmlElement.setAttribute("data-theme", newTheme);
             localStorage.setItem("theme", newTheme);
+            if (themeSwitchText) themeSwitchText.textContent = isNowDark ? "Dark Mode" : "Light Mode";
         });
     }
 });
