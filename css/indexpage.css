@@ -26,6 +26,20 @@
     --button-bg: #000000;
     --button-text: #FFFFFF;
     --button-hover: #444444;
+
+    /* ネットワーク講習会用変数 (ライトモード) */
+    --bg-table-th: #F2F2F2;
+    --bg-note: #FFF9C4;
+    --border-note: #FBC02D;
+    --bg-answer: #E8F5E9;
+    --border-answer: #C8E6C9;
+    --text-answer-title: #2E7D32;
+    --bg-concept: #E8F5E9;
+    --border-concept: #81C784;
+    --text-concept-h4: #2E7D32;
+    --bg-alert: #FFEBEE;
+    --border-alert: #E57373;
+    --text-alert-h4: #C62828;
 }
 
 :root[data-theme="dark"] {
@@ -51,6 +65,20 @@
     --button-bg: #333333;
     --button-text: #FFFFFF;
     --button-hover: #555555;
+
+    /* ネットワーク講習会用変数 (ダークモード) */
+    --bg-table-th: #333333;
+    --bg-note: #332b00;
+    --border-note: #cda815;
+    --bg-answer: #0d2a11;
+    --border-answer: #2E7D32;
+    --text-answer-title: #81C784;
+    --bg-concept: #0d2a11;
+    --border-concept: #2E7D32;
+    --text-concept-h4: #81C784;
+    --bg-alert: #2d0e0e;
+    --border-alert: #c62828;
+    --text-alert-h4: #e57373;
 }
 
 body {
@@ -438,6 +466,80 @@ input:checked + .slider:before {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* ============================================== */
+/* ネットワーク講習会用スタイル */
+/* ============================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+}
+table th, table td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: left;
+}
+table th {
+    background-color: var(--bg-table-th);
+    font-weight: bold;
+}
+.note {
+    background-color: var(--bg-note);
+    border-left: 5px solid var(--border-note);
+    padding: 10px;
+    margin: 20px 0;
+    font-style: italic;
+}
+.answer-section {
+    background-color: var(--bg-answer);
+    border: 1px solid var(--border-answer);
+    padding: 15px;
+    margin-top: 20px;
+}
+.answer-title {
+    font-size: 16px;
+    margin-top: 0;
+    color: var(--text-answer-title);
+    font-weight: bold;
+}
+.command-box {
+    background-color: #2E2E2E;
+    color: #EEEEEE;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: monospace;
+    margin: 15px 0;
+    overflow-x: auto;
+}
+.command-box strong {
+    color: #4CAF50;
+}
+.concept-box {
+    background-color: var(--bg-concept);
+    border: 1px solid var(--border-concept);
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+.concept-box h4 {
+    margin-top: 0;
+    color: var(--text-concept-h4);
+    font-weight: bold;
+}
+.alert-box {
+    background-color: var(--bg-alert);
+    border: 1px solid var(--border-alert);
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+.alert-box h4 {
+    margin-top: 0;
+    color: var(--text-alert-h4);
+    font-weight: bold;
 }
 
 /* ============================================== */
