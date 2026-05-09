@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>Eslone's HP - Blog: 20251126</title>
     <link rel="stylesheet" href="../css/indexpage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
+    <script src="../js/theme-toggle.js"></script>
+</head>
 <body>
 
     <div class="global-nav">
@@ -13,6 +14,7 @@
         <a href="../articlelist.html">Blogs</a>
         <a href="https://lit.link/eslone_mots2">Contact</a>
         <a href="https://github.com/Eslone2">Codes</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
     </div>
 
     <div class="sub-nav">
@@ -23,25 +25,25 @@
     <div class="container">
         <div class="blog-post" style="padding: 40px 60px;">
             
-            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
                 【再掲】AQUOS R9の簡易的レビュー
             </h1>
             
-            <p style="font-size: 11px; color: #666;">
+            <p style="font-size: 11px; color: var(--text-muted);">
                 Posted on <span style="font-weight: bold;">November 27, 2025</span> by Eslone | <a href="#">雑記</a>
             </p>
 
-            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
             <div class="post-content" style="font-size: 14px; margin-top: 30px;">
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">はじめに</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">はじめに</h2>
 
                 <p>
                     こんにちは、えすろんです。今回は、AQUOS R9の簡易的レビューをしていきたいと思います。
                 </p>
                 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">AQUOS R9のスペック</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">AQUOS R9のスペック</h2>
                 
                 <p>
                     このスマホのスペックは以下の通り。
@@ -51,7 +53,7 @@
                     <br>・Screen: IGZO Pro OLED 6.5inch 240Hz
                 </p>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">重さ、サイズとか</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">重さ、サイズとか</h2>
                 
                 <p>
                     こいつ、意外とでかい。Jelly 2の2倍以上はあるかも。そして、重量があって片手で持つと結構重い。
@@ -60,24 +62,24 @@
                 </p>
                 
                 <div style="text-align: center; margin: 30px 0;">
-                    <img src="../image/20250429_2.png" alt="AQUOS R9 元宮チアキ" style="max-width: 80%; border: 1px solid #DDDDDD; padding: 5px;">
-                    <p style="font-size: 11px; color: #999; margin-top: 5px;">背景を選べるのも良い点<br>(元宮チアキ可愛い)</p>
+                    <img src="../image/20250429_2.png" alt="AQUOS R9 元宮チアキ" style="max-width: 80%; border: 1px solid var(--border-color); padding: 5px;">
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">背景を選べるのも良い点<br>(元宮チアキ可愛い)</p>
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">画質と音質</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">画質と音質</h2>
                 
                 <p>
                     画質はIGZOなので綺麗。それに縁が細くて見やすい。
                     <br>本体側のスピーカーの音質はそこまで良くないが、AptX Adaptive と LDAC に対応しているので、TWSを繋げれば問題なし。
                 </p>
  
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">ゲーム性能</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">ゲーム性能</h2>
                 
                 <p>
                     良くもなく、悪くもない。一昔前のハイエンドスマホ並みで普通に遊べる。
                 </p>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">カメラ</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">カメラ</h2>
                 
                 <p>
                     SIMフリー版の場合、シャッター音を消せる。ペットの撮影に便利。
@@ -86,17 +88,17 @@
                 </p>
 
                 <div style="text-align: center; margin: 30px 0;">
-                    <img src="../image/20250429_3.png" alt="AQUOS R9 イオンスタイル八戸沼館" style="max-width: 80%; border: 1px solid #DDDDDD; padding: 5px;">
-                    <p style="font-size: 11px; color: #999; margin-top: 5px;">微妙にノイジー</p>
+                    <img src="../image/20250429_3.png" alt="AQUOS R9 イオンスタイル八戸沼館" style="max-width: 80%; border: 1px solid var(--border-color); padding: 5px;">
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">微妙にノイジー</p>
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">まとめ</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">まとめ</h2>
                 
                 <p>
                     迷ったらこの機種が良いかも。バランスを求める人におすすめ。では、また次回。
                 </p>
 
-<!--                 <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">過去のPCたち</h2>
+<!--                 <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">過去のPCたち</h2>
                 
                <p>
                     IBM ThinkPad X24(2010~2016)
@@ -149,10 +151,10 @@
                     <br>東方Projectのプレイ中にBSoDが頻発して大変だった記憶があります。
                 </p>-->
 
-                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
                 <p style="text-align: center; font-size: 13px;">
-                    <a href="#">&larr; 前の記事へ</a> | <a href="../index.html">ホームに戻る</a> | <a href="#">次の記事へ &rarr;</a>
+                    <a href="20251127.html">&larr; 前の記事へ</a> | <a href="../articlelist.html">一覧に戻る</a> | <a href="20251127_3.html">次の記事へ &rarr;</a>
                 </p>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -38,6 +38,7 @@
             font-weight: bold;
         }
     </style>
+<script src="../../js/theme-toggle.js"></script>
 </head>
 <body>
 
@@ -46,6 +47,7 @@
         <a href="../../articlelist.html">Blogs</a>
         <a href="https://lit.link/eslone_mots2">Contact</a>
         <a href="https://github.com/Eslone2">Codes</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
     </div>
 
     <div class="sub-nav">
@@ -56,25 +58,25 @@
     <div class="container">
         <div class="blog-post" style="padding: 40px 60px;">
             
-            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
                 💻 ネットワーク構築 講習会（第四回）
             </h1>
             
-            <p style="font-size: 11px; color: #666;">
+            <p style="font-size: 11px; color: var(--text-muted);">
                 Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">講習会資料</a>
             </p>
 
-            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
             <div class="post-content" style="font-size: 14px; margin-top: 30px;">
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 今回の最終目標</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🎯 今回の最終目標</h2>
                 <ul>
                     <li>家庭用と業務用のアクセスポイント(AP)の決定的な違いを理解する。</li>
                     <li>公衆無線LANのリスクと、eduroamやOpenRoamingなどのセキュアなローミング技術の仕組みを理解する。</li>
                 </ul>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🏢 1. 家庭用APと業務用APの決定的な違い</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🏢 1. 家庭用APと業務用APの決定的な違い</h2>
                 <p>第3回で「アクセスポイント（AP）」について学びましたが、実は家電量販店で売っている「家庭用」と、企業や大学で使われる「業務用」では大きな違いがあります。</p>
 
                 <div class="concept-box">
@@ -93,7 +95,7 @@
                     </ul>
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📶 2. 一般的な無線LANと公衆無線LAN（フリーWi-Fi）</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📶 2. 一般的な無線LANと公衆無線LAN（フリーWi-Fi）</h2>
                 <p>街中にあるカフェや駅の公衆無線LAN（フリーWi-Fi）は便利ですが、家庭用Wi-Fiとは異なる特徴とリスクがあります。</p>
 
                 <p><strong>利点：</strong> 誰でも無料で手軽にインターネットにアクセスでき、外出先でのスマートフォンの通信量（ギガ）節約に役立ちます。</p>
@@ -106,16 +108,16 @@
                     </ul>
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🛡️ 3. 安全でシームレスなWi-Fi：eduroam と OpenRoaming</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🛡️ 3. 安全でシームレスなWi-Fi：eduroam と OpenRoaming</h2>
                 <p>先ほどのような公衆Wi-Fiのリスクを排除し、安全にどこでもWi-Fiを使えるようにする画期的な技術があります。</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">🎓 eduroam（エデュローム）とは？</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">🎓 eduroam（エデュローム）とは？</h3>
                 <p>大学などの教育・研究機関で使われる国際的なWi-Fiローミング基盤です。所属する大学のIDとパスワード（または証明書）を端末に一度設定しておけば、世界中の他のeduroam参加大学に出向いても、自動的かつ安全にWi-Fiに接続できます。</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">🌍 OpenRoaming（オープンローミング）とは？</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">🌍 OpenRoaming（オープンローミング）とは？</h3>
                 <p>eduroamの「便利で安全な仕組み」を、大学だけでなく一般の商業施設や街中のフリーWi-Fiにも広げようという世界的な取り組みです。</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">なぜこれらのWi-Fiは安全なのか？（エンタープライズ認証）</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">なぜこれらのWi-Fiは安全なのか？（エンタープライズ認証）</h3>
                 <p>eduroamやOpenRoamingでは、家庭用Wi-Fiのような「全員共通のパスワード」を使いません。代わりに<strong>「802.1X認証（WPA2/WPA3-Enterprise）」</strong>という仕組みを使います。</p>
                 <ul>
                     <li>ユーザー<strong>個別のID/パスワードや電子証明書</strong>を使って認証と暗号化を行います。</li>
@@ -124,7 +126,7 @@
                 </ul>
                 <p>これはまさに、業務用AP（エンタープライズAP）ならではの高度でセキュアな機能です！</p>
 
-                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
                 <p style="text-align: center; font-size: 13px;">
                     <a href="No_3.html">&larr; 第三回へ</a> | <a href="../../index.html">ホームに戻る</a>

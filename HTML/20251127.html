@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>Eslone's HP - Blog: 20251127</title>
     <link rel="stylesheet" href="../css/indexpage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
+    <script src="../js/theme-toggle.js"></script>
+</head>
 <body>
 
     <div class="global-nav">
@@ -13,6 +14,7 @@
         <a href="../articlelist.html">Blogs</a>
         <a href="https://lit.link/eslone_mots2">Contact</a>
         <a href="https://github.com/Eslone2">Codes</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
     </div>
 
     <div class="sub-nav">
@@ -23,25 +25,25 @@
     <div class="container">
         <div class="blog-post" style="padding: 40px 60px;">
             
-            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
                 Windowsとのおもひで
             </h1>
             
-            <p style="font-size: 11px; color: #666;">
+            <p style="font-size: 11px; color: var(--text-muted);">
                 Posted on <span style="font-weight: bold;">November 27, 2025</span> by Eslone | <a href="#">雑記</a>
             </p>
 
-            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
             <div class="post-content" style="font-size: 14px; margin-top: 30px;">
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">はじめに</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">はじめに</h2>
 
                 <p>
                     こんにちは、えすろんです。今回は、過去のWindowsとの思い出を紹介したいと思います。
                 </p>
                 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">Windows XP</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">Windows XP</h2>
                 
                 <p>
                     リソースを食わないため、OS自体の動作はとても軽快だった記憶がある。
@@ -49,7 +51,7 @@
                     <br>XP自体、ウイルスに罹りやすい構造をしていたので、ネット接続時はWindows Defender等で安全対策をしていた。
                 </p>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">Windows 7</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">Windows 7</h2>
                 
                 <p>
                     こいつも意外と軽快な動作をしていた記憶がある（XPよりは重かったが）。Aeroテーマが綺麗だった。
@@ -58,24 +60,24 @@
                 </p>
                 
 <!--                <div style="text-align: center; margin: 30px 0;">
-                    <img src="../IMG/train_route_photo.jpg" alt="八戸方面の風景" style="max-width: 80%; border: 1px solid #DDDDDD; padding: 5px;">
-                    <p style="font-size: 11px; color: #999; margin-top: 5px;">青い森鉄道線の車窓から（仮画像）</p>
+                    <img src="../IMG/train_route_photo.jpg" alt="八戸方面の風景" style="max-width: 80%; border: 1px solid var(--border-color); padding: 5px;">
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">青い森鉄道線の車窓から（仮画像）</p>
                 </div>-->
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">Windows 8 & 8.1</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">Windows 8 & 8.1</h2>
                 
                 <p>
                     こっちもアカウント紐付 & UI以外は酷評される要素が見当たらないので「本当にそこまで酷い？」という感じ。
                     <br>酷評の割にはCore 2頃の古いマシンでも軽快な動作をしていた。ただし、タブレット以外ではスタートメニューが使いづらいかも。
                 </p>
  
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">Windows 10</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">Windows 10</h2>
                 
                 <p>
                     個人的にはそこまで出来が良くないOSだと思う。Update直後にフリーズが頻発していた。それ以外は普通のOSだった。
                 </p>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">Windows 11</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">Windows 11</h2>
                 
                 <p>
                     自分から見ても、過去一番の駄作。無理に買う必要はない。不要な機能が消せないのは痛い。
@@ -83,7 +85,7 @@
                     <br>デバイスを見失う&ドライバが弾かれるのが冗談抜きで「仕様か？」と思う程、発生する。
                 </p>
 
-<!--                 <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">過去のPCたち</h2>
+<!--                 <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">過去のPCたち</h2>
                 
                <p>
                     IBM ThinkPad X24(2010~2016)
@@ -136,10 +138,10 @@
                     <br>東方Projectのプレイ中にBSoDが頻発して大変だった記憶があります。
                 </p>-->
 
-                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
                 <p style="text-align: center; font-size: 13px;">
-                    <a href="#">&larr; 前の記事へ</a> | <a href="../index.html">ホームに戻る</a> | <a href="#">次の記事へ &rarr;</a>
+                    <a href="20251126_2.html">&larr; 前の記事へ</a> | <a href="../articlelist.html">一覧に戻る</a> | <a href="20251127_2.html">次の記事へ &rarr;</a>
                 </p>
             </div>
         </div>

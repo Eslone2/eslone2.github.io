@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
             font-size: 13px;
         }
         table th, table td {
-            border: 1px solid #DDDDDD;
+            border: 1px solid var(--border-color);
             padding: 8px;
             text-align: left;
         }
@@ -41,6 +41,7 @@
             color: #4CAF50;
         }
     </style>
+<script src="../../js/theme-toggle.js"></script>
 </head>
 <body>
 
@@ -49,6 +50,7 @@
         <a href="../../articlelist.html">Blogs</a>
         <a href="https://lit.link/eslone_mots2">Contact</a>
         <a href="https://github.com/Eslone2">Codes</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
     </div>
 
     <div class="sub-nav">
@@ -59,25 +61,25 @@
     <div class="container">
         <div class="blog-post" style="padding: 40px 60px;">
             
-            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
                 💻 ネットワーク構築 講習会（第二回）
             </h1>
             
-            <p style="font-size: 11px; color: #666;">
+            <p style="font-size: 11px; color: var(--text-muted);">
                 Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">講習会資料</a>
             </p>
 
-            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
             <div class="post-content" style="font-size: 14px; margin-top: 30px;">
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 今回の最終目標</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🎯 今回の最終目標</h2>
                 <ul>
                     <li>Teratermを使ってネットワーク機器（ルータやスイッチ）に接続できる。</li>
                     <li>機器の基本的な操作モードの違いを理解し、状態確認コマンドを実行できる。</li>
                 </ul>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📥 1. Teratermでの接続方法</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📥 1. Teratermでの接続方法</h2>
                 <p>第1回でインストールした「Teraterm」を使用して、ネットワーク機器（Ciscoルータやスイッチ）に接続します。</p>
                 <p>多くの場合、初期設定を行う際は「コンソールケーブル」と呼ばれる専用のケーブルを使ってPCと機器を直接繋ぎます（シリアル接続）。</p>
                 
@@ -91,14 +93,14 @@
                     <strong>注意：</strong> シリアルポートの設定（設定 -> シリアルポート）で、スピード(Baud rate)が <strong>9600</strong> になっていることを確認してください（Cisco機器の標準設定）。
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">⚙️ 2. ネットワーク機器の3つのモード</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">⚙️ 2. ネットワーク機器の3つのモード</h2>
                 <p>無事に接続できると、黒い画面に文字が表示されます。Cisco機器（IOS）には、操作の権限によって主に3つのモードが存在します。</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">① ユーザーEXECモード ( <code>&gt;</code> )</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">① ユーザーEXECモード ( <code>&gt;</code> )</h3>
                 <p>接続直後のモードです。プロンプト（入力待ちの記号）は <code>Router&gt;</code> のようになります。</p>
                 <p>このモードでは、限られた確認コマンドしか実行できず、設定の変更などは一切できません。</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">② 特権EXECモード ( <code>#</code> )</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">② 特権EXECモード ( <code>#</code> )</h3>
                 <p>すべての確認コマンドや、ファイルの保存・再起動などができるモードです。プロンプトは <code>Router#</code> に変わります。</p>
                 <p>ユーザーEXECモードから移行するには、以下のコマンドを入力します。</p>
                 <div class="command-box">
@@ -106,7 +108,7 @@
                     Router#
                 </div>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">③ グローバルコンフィギュレーションモード ( <code>(config)#</code> )</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">③ グローバルコンフィギュレーションモード ( <code>(config)#</code> )</h3>
                 <p>機器全体の設定（IPアドレスの付与やルーティングの設定など）を行うモードです。プロンプトは <code>Router(config)#</code> に変わります。</p>
                 <div class="command-box">
                     Router# <strong>configure terminal</strong><br>
@@ -114,10 +116,10 @@
                 </div>
                 <p>元のモードに戻るには <code>exit</code> コマンドを使用します。</p>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔍 3. 状態確認の基本コマンド</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔍 3. 状態確認の基本コマンド</h2>
                 <p>特権EXECモード（<code>#</code>）でよく使う、非常に重要な確認コマンドを2つ紹介します。</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">show ip interface brief</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">show ip interface brief</h3>
                 <p>各インターフェース（LANケーブルを挿すポート）のIPアドレスや、通信できる状態（UP/DOWN）を一覧で確認できます。</p>
                 <div class="command-box">
                     Router# <strong>show ip interface brief</strong><br>
@@ -126,7 +128,7 @@
                     GigabitEthernet0/1     unassigned      YES unset  administratively down down
                 </div>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">show running-config</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">show running-config</h3>
                 <p>現在機器で動いている「すべての設定（コンフィグ）」を表示します。自分が設定した内容が正しく反映されているかを確認するために使います。</p>
                 <div class="command-box">
                     Router# <strong>show running-config</strong><br>
@@ -134,7 +136,7 @@
                     (以下、設定内容がずらっと表示されます。スペースキーでページ送りできます)
                 </div>
 
-                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
                 <p style="text-align: center; font-size: 13px;">
                     <a href="No_1.html">&larr; 第一回へ</a> | <a href="../../index.html">ホームに戻る</a> | <a href="No_3.html">第三回へ &rarr;</a>

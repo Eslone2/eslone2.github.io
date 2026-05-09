@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,6 +38,7 @@
             font-weight: bold;
         }
     </style>
+<script src="../../js/theme-toggle.js"></script>
 </head>
 <body>
 
@@ -46,6 +47,7 @@
         <a href="../../articlelist.html">Blogs</a>
         <a href="https://lit.link/eslone_mots2">Contact</a>
         <a href="https://github.com/Eslone2">Codes</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
     </div>
 
     <div class="sub-nav">
@@ -56,25 +58,25 @@
     <div class="container">
         <div class="blog-post" style="padding: 40px 60px;">
             
-            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
                 💻 Network Construction Workshop (Session 4)
             </h1>
             
-            <p style="font-size: 11px; color: #666;">
+            <p style="font-size: 11px; color: var(--text-muted);">
                 Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">Workshop Materials</a>
             </p>
 
-            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
             <div class="post-content" style="font-size: 14px; margin-top: 30px;">
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 Final Goals for this Session</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🎯 Final Goals for this Session</h2>
                 <ul>
                     <li>Understand the decisive differences between home Access Points (APs) and enterprise APs.</li>
                     <li>Understand the risks of public wireless LANs and the mechanisms of secure roaming technologies like eduroam and OpenRoaming.</li>
                 </ul>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🏢 1. Decisive Differences Between Home APs and Enterprise APs</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🏢 1. Decisive Differences Between Home APs and Enterprise APs</h2>
                 <p>In Session 3, we learned about "Access Points (APs)", but there is actually a huge difference between the "home" versions sold in electronics stores and the "enterprise" versions used in companies and universities.</p>
 
                 <div class="concept-box">
@@ -93,7 +95,7 @@
                     </ul>
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📶 2. General Wireless LANs and Public Wireless LANs (Free Wi-Fi)</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📶 2. General Wireless LANs and Public Wireless LANs (Free Wi-Fi)</h2>
                 <p>Public wireless LANs (Free Wi-Fi) found in cafes and stations are convenient, but they have different features and risks compared to home Wi-Fi.</p>
 
                 <p><strong>Pros:</strong> Anyone can easily and freely access the internet, helping to save smartphone mobile data on the go.</p>
@@ -106,16 +108,16 @@
                     </ul>
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🛡️ 3. Secure and Seamless Wi-Fi: eduroam and OpenRoaming</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🛡️ 3. Secure and Seamless Wi-Fi: eduroam and OpenRoaming</h2>
                 <p>There are groundbreaking technologies that eliminate the risks of public Wi-Fi and allow you to use Wi-Fi securely anywhere.</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">🎓 What is eduroam?</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">🎓 What is eduroam?</h3>
                 <p>An international Wi-Fi roaming infrastructure used by educational and research institutions like universities. Once you configure your university's ID and password (or certificate) on your device, you can automatically and securely connect to Wi-Fi even when visiting other participating universities worldwide.</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">🌍 What is OpenRoaming?</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">🌍 What is OpenRoaming?</h3>
                 <p>A global initiative to expand the "convenient and secure mechanism" of eduroam beyond universities to general commercial facilities and city-wide Free Wi-Fi.</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Why are these Wi-Fi networks secure? (Enterprise Authentication)</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Why are these Wi-Fi networks secure? (Enterprise Authentication)</h3>
                 <p>eduroam and OpenRoaming do not use a "shared password for everyone" like home Wi-Fi. Instead, they use a mechanism called <strong>"802.1X Authentication (WPA2/WPA3-Enterprise)"</strong>.</p>
                 <ul>
                     <li>Authentication and encryption are performed using <strong>individual user IDs/passwords or digital certificates</strong>.</li>
@@ -124,7 +126,7 @@
                 </ul>
                 <p>This is an advanced, highly secure feature unique to Enterprise APs!</p>
 
-                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
                 <p style="text-align: center; font-size: 13px;">
                     <a href="No_3.html">&larr; Go to Session 3</a> | <a href="../../index.html">Return to Home</a>

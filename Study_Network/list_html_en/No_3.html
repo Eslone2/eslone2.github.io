@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
             font-size: 13px;
         }
         table th, table td {
-            border: 1px solid #DDDDDD;
+            border: 1px solid var(--border-color);
             padding: 8px;
             text-align: left;
         }
@@ -41,6 +41,7 @@
             font-weight: bold;
         }
     </style>
+<script src="../../js/theme-toggle.js"></script>
 </head>
 <body>
 
@@ -49,6 +50,7 @@
         <a href="../../articlelist.html">Blogs</a>
         <a href="https://lit.link/eslone_mots2">Contact</a>
         <a href="https://github.com/Eslone2">Codes</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
     </div>
 
     <div class="sub-nav">
@@ -59,28 +61,28 @@
     <div class="container">
         <div class="blog-post" style="padding: 40px 60px;">
             
-            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
                 💻 Network Construction Workshop (Session 3)
             </h1>
             
-            <p style="font-size: 11px; color: #666;">
+            <p style="font-size: 11px; color: var(--text-muted);">
                 Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">Workshop Materials</a>
             </p>
 
-            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
             <div class="post-content" style="font-size: 14px; margin-top: 30px;">
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 Final Goals for this Session</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🎯 Final Goals for this Session</h2>
                 <ul>
                     <li>Understand wireless LAN standards and the differences between an Access Point (AP) and a Router (RT).</li>
                     <li>Understand the mechanisms of "encryption (public key / private key)", which are essential for secure communication.</li>
                 </ul>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📶 1. What is the Wireless LAN Standard "IEEE802.11"?</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📶 1. What is the Wireless LAN Standard "IEEE802.11"?</h2>
                 <p>When connecting smartphones or PCs to Wi-Fi, a communication standard (rule) called <strong>"IEEE802.11"</strong> is used behind the scenes.</p>
                 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Differences in Frequency Bands (2.4GHz / 5GHz / 6GHz)</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Differences in Frequency Bands (2.4GHz / 5GHz / 6GHz)</h3>
                 <p>Wi-Fi primarily uses three frequency bands (paths for radio waves).</p>
                 <ul>
                     <li><strong>2.4GHz Band:</strong> Strong against obstacles (like walls) but prone to interference from microwaves or Bluetooth, and relatively slower.</li>
@@ -88,7 +90,7 @@
                     <li><strong>6GHz Band:</strong> A newly added band. Less crowded and free from interference, enabling ultra-fast and stable communication. However, it is the weakest against obstacles.</li>
                 </ul>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Evolution of Representative Standards</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Evolution of Representative Standards</h3>
                 <p>As technology advances, the letter at the end of the standard changes. Recently, it has become more common to refer to them simply by numbers like "Wi-Fi X".</p>
                 <table>
                     <thead>
@@ -127,7 +129,7 @@
                     </tbody>
                 </table>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔄 2. Differences Between Routers (RT) and Access Points (AP)</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔄 2. Differences Between Routers (RT) and Access Points (AP)</h2>
                 <p>In networking, "Routers" and "Access Points" are often confused. Let's clarify their true roles.</p>
 
                 <div class="concept-box">
@@ -147,13 +149,13 @@
                     The "Wi-Fi router" in your house is actually an extremely convenient multi-function device combining <strong>[Router Function] + [AP Function] + [Switch Function]</strong> in one box. In companies, it is common to install routers and APs as separate devices.
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔒 3. Basics of Encryption: To Send Information Securely</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔒 3. Basics of Encryption: To Send Information Securely</h2>
                 <p>On the internet, data is delivered via various devices like a bucket brigade. If sent as it is (plaintext), there is a risk of it being stolen and read along the way, so <strong>"encryption"</strong> is essential.</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Common Key Cryptography</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Common Key Cryptography</h3>
                 <p>A method where the "key to lock" and the "key to unlock" are the <strong>same</strong>. Processing speed is fast, but there is a major problem: "How do you securely deliver that key to someone far away?"</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Public Key Cryptography (Important!)</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Public Key Cryptography (Important!)</h3>
                 <p>Public Key Cryptography solved this problem. Here, two paired keys, a <strong>"Public Key"</strong> and a <strong>"Private Key"</strong>, are used.</p>
                 <ul>
                     <li><strong>Public Key (A padlock anyone can use):</strong> A key solely for locking data, safe to give to anyone.</li>
@@ -162,7 +164,7 @@
                 <p><strong>【Mechanism】</strong><br>
                 If Person A wants to send a secret message to Person B, Person A locks the message with "Person B's Public Key (padlock)" distributed by Person B, and sends it. Because this padlock can only be opened with "Person B's Private Key" that Person B holds, even if someone steals it along the way, they cannot see the contents!</p>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔑 4. Familiar Examples of Encryption</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔑 4. Familiar Examples of Encryption</h2>
                 
                 <p><strong>① Browsing Websites (HTTPS)</strong><br>
                 Sites whose URLs start with <code>https://</code> and have a "padlock icon" in the browser have their communication encrypted. Thanks to this technology, sending credit card information is safe.</p>
@@ -170,7 +172,7 @@
                 <p><strong>② Connecting to Network Devices (SSH)</strong><br>
                 In Session 2, we used "Teraterm" to connect to network devices. A frequently used connection method here is <strong>SSH (Secure Shell)</strong>. This also combines "Public Key Cryptography", etc., encrypting passwords and operation commands so you can securely operate the device.</p>
 
-                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
                 <p style="text-align: center; font-size: 13px;">
                     <a href="No_2.html">&larr; Go to Session 2</a> | <a href="../../index.html">Return to Home</a> | <a href="No_4.html">Go to Session 4 &rarr;</a>

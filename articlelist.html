@@ -12,20 +12,23 @@
             margin: 0;
         }
         .article-item-card {
-            background-color: #F8F9FA;
-            border: 1px solid #DDDDDD;
-            border-radius: 5px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0;
             padding: 20px;
             margin-bottom: 20px;
-            transition: box-shadow 0.3s;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.2s ease, background-color 0.3s ease;
         }
         .article-item-card:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+            background-color: var(--bg-container);
         }
         .article-title-card {
             font-size: 18px;
             font-weight: bold;
-            color: #333;
+            color: var(--text-heading);
             margin-top: 0;
             margin-bottom: 10px;
             border-bottom: 2px solid #E0E0E0;
@@ -36,19 +39,21 @@
         }
         .article-links-card a {
             display: inline-block;
-            background-color: #000000;
-            color: #FFFFFF;
-            padding: 6px 16px;
-            border-radius: 3px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            padding: 8px 18px;
+            border-radius: 0;
             text-decoration: none;
             font-size: 13px;
+            font-weight: 600;
             margin-right: 10px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
         .article-links-card a:hover {
-            background-color: #444444;
+            background-color: var(--button-hover);
         }
     </style>
+<script src="./js/theme-toggle.js"></script>
 </head>
 <body>
 
@@ -57,6 +62,7 @@
         <a href="./articlelist.html">Blogs</a>
         <a href="https://lit.link/eslone_mots2">Contact</a>
         <a href="https://github.com/Eslone2">Codes</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
     </div>
 
     <div class="sub-nav">
@@ -67,11 +73,11 @@
     <div class="container">
         <div class="article-list-section" style="padding: 40px 60px;">
             
-            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 30px;">
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 30px;">
                 ブログ記事一覧 (Articles)
             </h1>
 <!--        
-            <div class="search-box" style="margin-bottom: 30px; padding: 10px; border: 1px solid #DDDDDD; background-color: #F8F8F8; border-radius: 4px;">
+            <div class="search-box" style="margin-bottom: 30px; padding: 10px; border: 1px solid var(--border-color); background-color: #F8F8F8; border-radius: 4px;">
                 <label for="search" style="font-weight: bold;">Filter:</label>
                 <input type="text" id="search" placeholder="キーワードを入力..." 
                        style="padding: 5px; border: 1px solid #CCCCCC; width: 70%; margin-left: 10px; border-radius: 3px;">
@@ -84,7 +90,7 @@
 
                 <li class="article-item-card">
                     <h2 class="article-title-card">DELL inspiron 3501をタダでいただいた話。</h2>
-                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-27 — ひょんなことからいただいたDELL inspiron 3501の簡易的レビューです。</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin: 0;">2025-11-27 — ひょんなことからいただいたDELL inspiron 3501の簡易的レビューです。</p>
                     <div class="article-links-card">
                         <a href="./HTML/20251127_3.html">記事を読む</a>
                     </div>
@@ -92,7 +98,7 @@
 
                 <li class="article-item-card">
                     <h2 class="article-title-card">【再掲】AQUOS R9の簡易的レビュー</h2>
-                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-27 — AQUOS R9の簡易的レビューです。</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin: 0;">2025-11-27 — AQUOS R9の簡易的レビューです。</p>
                     <div class="article-links-card">
                         <a href="./HTML/20251127_2.html">記事を読む</a>
                     </div>
@@ -100,7 +106,7 @@
 
                 <li class="article-item-card">
                     <h2 class="article-title-card">Windowsとのおもひで</h2>
-                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-27 — 自分が触ってきたWindowsをまとめました。</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin: 0;">2025-11-27 — 自分が触ってきたWindowsをまとめました。</p>
                     <div class="article-links-card">
                         <a href="./HTML/20251127.html">記事を読む</a>
                     </div>
@@ -108,7 +114,7 @@
 
                 <li class="article-item-card">
                     <h2 class="article-title-card">現在の開発環境の紹介、過去のPCたち</h2>
-                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-26 — 現在の開発環境と過去のPCたちをまとめました。</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin: 0;">2025-11-26 — 現在の開発環境と過去のPCたちをまとめました。</p>
                     <div class="article-links-card">
                         <a href="./HTML/20251126_2.html">記事を読む</a>
                     </div>
@@ -116,7 +122,7 @@
 
                 <li class="article-item-card">
                     <h2 class="article-title-card">自己紹介</h2>
-                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-26 — Eslone2の自己紹介記事です。</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin: 0;">2025-11-26 — Eslone2の自己紹介記事です。</p>
                     <div class="article-links-card">
                         <a href="./HTML/20251126.html">記事を読む</a>
                     </div>
@@ -124,7 +130,7 @@
 
                 <li class="article-item-card">
                     <h2 class="article-title-card">冬休みにやりたいことリスト</h2>
-                    <p style="font-size: 13px; color: #555; margin: 0;">2025-11-25 — 冬休みにやりたいことの一覧をまとめました。</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin: 0;">2025-11-25 — 冬休みにやりたいことの一覧をまとめました。</p>
                     <div class="article-links-card">
                         <a href="./HTML/20251125.html">記事を読む</a>
                     </div>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
             font-size: 13px;
         }
         table th, table td {
-            border: 1px solid #DDDDDD;
+            border: 1px solid var(--border-color);
             padding: 8px;
             text-align: left;
         }
@@ -35,6 +35,7 @@
             margin-top: 20px;
         }
     </style>
+<script src="../../js/theme-toggle.js"></script>
 </head>
 <body>
 
@@ -43,6 +44,7 @@
         <a href="../../articlelist.html">Blogs</a>
         <a href="https://lit.link/eslone_mots2">Contact</a>
         <a href="https://github.com/Eslone2">Codes</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
     </div>
 
     <div class="sub-nav">
@@ -53,25 +55,25 @@
     <div class="container">
         <div class="blog-post" style="padding: 40px 60px;">
             
-            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
                 💻 Network Construction Workshop (Session 1)
             </h1>
             
-            <p style="font-size: 11px; color: #666;">
+            <p style="font-size: 11px; color: var(--text-muted);">
                 Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">Workshop Materials</a>
             </p>
 
-            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
             <div class="post-content" style="font-size: 14px; margin-top: 30px;">
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 Final Goals for this Session</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🎯 Final Goals for this Session</h2>
                 <ul>
                     <li>Understand the mechanisms of IP addresses, subnet masks, and network addresses.</li>
                     <li>Understand the roles of routers and L2 switches within a network.</li>
                 </ul>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📥 Before we dive into the main topic...</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📥 Before we dive into the main topic...</h2>
                 <p>Please check if <strong>"Teraterm"</strong> is installed on your PC (especially for Windows users).</p>
                 <p>If not, please <a href="https://github.com/TeraTermProject/teraterm/releases"><strong>download and install it from here</strong></a>!</p>
                 
@@ -79,9 +81,9 @@
                     <strong>Note:</strong> We will use it from Session 2 onwards!! Please do not uninstall it!!
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🌐 Mechanisms of IP Addresses, Subnet Masks, and Network Addresses</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🌐 Mechanisms of IP Addresses, Subnet Masks, and Network Addresses</h2>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Mechanism of IP Addresses</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Mechanism of IP Addresses</h3>
                 <p>An IP address is (roughly speaking) like an <strong>address on the internet</strong>! Also, <strong>IP addresses must never be duplicated</strong>, as it would cause communication failures!</p>
                 
                 <p>For example...</p>
@@ -99,14 +101,14 @@
                     *The explanation here will basically use <strong>IPv4</strong>. We'll explain <strong>IPv6</strong> later! (<strong>IPv4</strong> operates on 32 bits)
                 </div>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Network Portion and Host Portion</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Network Portion and Host Portion</h3>
                 <ul>
                     <li>The <strong>Network Portion</strong> is the number that indicates <strong>which network it belongs to</strong>! It's like the name of an apartment building, e.g., 'XX Hills' (Example: <strong>172.155.10</strong>.1).</li>
                     <li>The <strong>Host Portion</strong> is the number that indicates <strong>which specific device it is within the above network</strong>! It's like 'Room XXX' in an apartment (Example: 172.155.10.<strong>1</strong>).</li>
                 </ul>
                 <p>Reference: <a href="https://wa3.i-3-i.info/word172.html">IP Address - IT Glossary (Japanese)</a></p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Mechanism of Subnet Masks</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Mechanism of Subnet Masks</h3>
                 <p>A subnet mask is a <strong>manual that explains how to separate the network portion and the host portion</strong>.</p>
                 <p>Reference: <a href="https://wa3.i-3-i.info/word11975.html">Subnet Mask - IT Glossary (Japanese)</a></p>
                 <p>For example, suppose the subnet mask is <code>255.255.255.0</code>. When converted to <strong>binary</strong>, it becomes <code>11111111.11111111.11111111.00000000</code>.</p>
@@ -115,7 +117,7 @@
                     <li>The part with 11111111.11111111.11111111.<strong>00000000</strong> is the <strong>Host Portion</strong>.</li>
                 </ul>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📝 Practice Problem: Separating Network and Host Portions</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📝 Practice Problem: Separating Network and Host Portions</h2>
                 <p>Now, let's actually try separating the network and host portions.</p>
                 <ol>
                     <li>When the subnet mask is <code>255.255.0.0</code>, for IP address <code>192.168.0.2</code></li>
@@ -140,16 +142,16 @@
                     </ol>
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📡 Roles of Routers and L2 Switches in a Network</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📡 Roles of Routers and L2 Switches in a Network</h2>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Mechanism of L2 Switches (Layer 2 Switches)</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Mechanism of L2 Switches (Layer 2 Switches)</h3>
                 <p>An L2 switch is a device that primarily handles communication <strong>within the same network</strong>.</p>
                 <ul>
                     <li><strong>Role:</strong> Delivers data to devices belonging to the <strong>same network</strong>.</li>
                     <li><strong>Criteria:</strong> Makes decisions by looking at the <strong>MAC address</strong> of the destination device.</li>
                 </ul>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">Mechanism of Routers (Layer 3 Switches/Routers)</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Mechanism of Routers (Layer 3 Switches/Routers)</h3>
                 <p>A router is a device that primarily handles communication <strong>between different networks</strong>.</p>
                 <ul>
                     <li><strong>Role:</strong> Relays data <strong>between different networks</strong> and sends it along the optimal path.</li>
@@ -181,7 +183,7 @@
                     </tbody>
                 </table>
 
-                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
                 <p style="text-align: center; font-size: 13px;">
                     <a href="../../index.html">Return to Home</a> | <a href="No_2.html">Go to Session 2 &rarr;</a>

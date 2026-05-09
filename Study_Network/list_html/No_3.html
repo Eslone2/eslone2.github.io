@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
             font-size: 13px;
         }
         table th, table td {
-            border: 1px solid #DDDDDD;
+            border: 1px solid var(--border-color);
             padding: 8px;
             text-align: left;
         }
@@ -41,6 +41,7 @@
             font-weight: bold;
         }
     </style>
+<script src="../../js/theme-toggle.js"></script>
 </head>
 <body>
 
@@ -49,6 +50,7 @@
         <a href="../../articlelist.html">Blogs</a>
         <a href="https://lit.link/eslone_mots2">Contact</a>
         <a href="https://github.com/Eslone2">Codes</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
     </div>
 
     <div class="sub-nav">
@@ -59,28 +61,28 @@
     <div class="container">
         <div class="blog-post" style="padding: 40px 60px;">
             
-            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
                 💻 ネットワーク構築 講習会（第三回）
             </h1>
             
-            <p style="font-size: 11px; color: #666;">
+            <p style="font-size: 11px; color: var(--text-muted);">
                 Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">講習会資料</a>
             </p>
 
-            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
             <div class="post-content" style="font-size: 14px; margin-top: 30px;">
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 今回の最終目標</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🎯 今回の最終目標</h2>
                 <ul>
                     <li>無線LANの規格や、アクセスポイント(AP)とルーター(RT)の違いを理解する。</li>
                     <li>安全な通信に欠かせない「暗号化（公開鍵・秘密鍵）」の仕組みを理解する。</li>
                 </ul>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📶 1. 無線LANの規格「IEEE802.11」とは？</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📶 1. 無線LANの規格「IEEE802.11」とは？</h2>
                 <p>スマートフォンやPCをWi-Fiに繋ぐとき、裏側では<strong>「IEEE802.11（アイトリプルイー はちまるにー てん いちいち）」</strong>という通信規格（ルール）が使われています。</p>
                 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">周波数帯の違い（2.4GHz / 5GHz / 6GHz）</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">周波数帯の違い（2.4GHz / 5GHz / 6GHz）</h3>
                 <p>Wi-Fiには主に3つの電波の通り道（周波数帯）があります。</p>
                 <ul>
                     <li><strong>2.4GHz帯：</strong> 障害物（壁など）に強いが、電子レンジやBluetoothと干渉しやすく速度が遅め。</li>
@@ -88,7 +90,7 @@
                     <li><strong>6GHz帯：</strong> 近年追加された新しい帯域。まだ利用者が少なく混雑していないため、超高速かつ安定した通信が可能。障害物には一番弱い。</li>
                 </ul>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">代表的な規格の進化</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">代表的な規格の進化</h3>
                 <p>技術の進歩に合わせて、規格の末尾のアルファベットが変わります。最近では分かりやすく「Wi-Fi 〇」という数字で呼ばれることも増えました。</p>
                 <table>
                     <thead>
@@ -127,7 +129,7 @@
                     </tbody>
                 </table>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔄 2. ルーター(RT)とアクセスポイント(AP)の違い</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔄 2. ルーター(RT)とアクセスポイント(AP)の違い</h2>
                 <p>ネットワーク機器の話でよく混同されるのが「ルーター」と「アクセスポイント」です。それぞれの本当の役割を確認しましょう。</p>
 
                 <div class="concept-box">
@@ -147,13 +149,13 @@
                     皆さんの家にある「Wi-Fiルーター」は、実は<strong>【ルーター機能】＋【AP機能】＋【スイッチ機能】</strong>が1つの箱に合体した非常に便利な複合機なのです。企業などでは、ルーターとAPを別々の機器として設置するのが一般的です。
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔒 3. 暗号化の基礎知識：情報を安全に送るために</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔒 3. 暗号化の基礎知識：情報を安全に送るために</h2>
                 <p>インターネット上では、データはバケツリレーのように様々な機器を経由して届きます。そのまま（平文）で送ると途中で盗み見られる危険があるため、<strong>「暗号化」</strong>が欠かせません。</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">共通鍵暗号方式</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">共通鍵暗号方式</h3>
                 <p>データを「ロックする鍵」と「開ける鍵」が<strong>同じ</strong>方式です。処理スピードが速いですが、「遠くにいる相手に、どうやってその鍵を安全に渡すか？」という大きな問題があります。</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">公開鍵暗号方式（重要！）</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">公開鍵暗号方式（重要！）</h3>
                 <p>この問題を解決したのが公開鍵暗号方式です。ここでは<strong>「公開鍵」</strong>と<strong>「秘密鍵」</strong>という2つのペアの鍵を使います。</p>
                 <ul>
                     <li><strong>公開鍵（誰でも使える南京錠）：</strong> 誰に渡してもOKな、データをロックするためだけの鍵。</li>
@@ -162,7 +164,7 @@
                 <p><strong>【仕組み】</strong><br>
                 AさんがBさんに秘密のメッセージを送りたい場合、AさんはBさんが配っている「Bさんの公開鍵（南京錠）」でメッセージをロックして送ります。この南京錠は、Bさんが持っている「Bさんの秘密鍵」でしか開けられないため、途中で誰かに盗まれても中身は見られません！</p>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔑 4. 身近な暗号化の例</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔑 4. 身近な暗号化の例</h2>
                 
                 <p><strong>① Webサイトの閲覧（HTTPS）</strong><br>
                 URLが <code>https://</code> で始まり、ブラウザに「鍵マーク」がついているサイトは、通信が暗号化されています。クレジットカード情報などを送っても安全なのはこの技術のおかげです。</p>
@@ -170,7 +172,7 @@
                 <p><strong>② ネットワーク機器への接続（SSH）</strong><br>
                 第2回の講習会で「Teraterm」を使ってネットワーク機器に接続しましたが、この時によく使われるのが <strong>SSH（Secure Shell）</strong> という接続方法です。これも「公開鍵暗号方式」などを組み合わせており、パスワードや操作コマンドを暗号化して安全に機器を操作できる仕組みになっています。</p>
 
-                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
                 <p style="text-align: center; font-size: 13px;">
                     <a href="No_2.html">&larr; 第二回へ</a> | <a href="../../index.html">ホームに戻る</a> | <a href="No_4.html">第四回へ &rarr;</a>

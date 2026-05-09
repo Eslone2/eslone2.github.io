@@ -1,59 +1,129 @@
 /* ============================================== */
 /* 1. 全体設定と基本スタイル */
 /* ============================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    /* ライトモードの色変数 (フラット＆ガラス) */
+    --bg-main: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    --bg-container: rgba(255, 255, 255, 0.65);
+    --bg-nav: rgba(255, 255, 255, 0.4);
+    --bg-subnav: rgba(255, 255, 255, 0.5);
+    --bg-card: rgba(255, 255, 255, 0.55);
+    --bg-footer: rgba(232, 236, 239, 0.7);
+    
+    --text-main: #333333;
+    --text-heading: #111111;
+    --text-muted: #666666;
+    
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-nav: rgba(0, 0, 0, 0.1);
+    
+    --link-color: #0066CC;
+    --link-hover: #004499;
+    --link-nav: #333333;
+    --link-nav-hover: #000000;
+    --button-bg: #000000;
+    --button-text: #FFFFFF;
+    --button-hover: #444444;
+}
+
+:root[data-theme="dark"] {
+    /* ダークモードの色変数 (フラット＆ガラス) */
+    --bg-main: linear-gradient(135deg, #1f1c2c 0%, #000000 100%);
+    --bg-container: rgba(30, 30, 30, 0.65);
+    --bg-nav: rgba(20, 20, 20, 0.5);
+    --bg-subnav: rgba(25, 25, 25, 0.5);
+    --bg-card: rgba(40, 40, 40, 0.6);
+    --bg-footer: rgba(20, 20, 20, 0.7);
+    
+    --text-main: #E0E0E0;
+    --text-heading: #FFFFFF;
+    --text-muted: #AAAAAA;
+    
+    --border-color: rgba(255, 255, 255, 0.1);
+    --border-nav: rgba(255, 255, 255, 0.1);
+    
+    --link-color: #66B2FF;
+    --link-hover: #99CCFF;
+    --link-nav: #E0E0E0;
+    --link-nav-hover: #FFFFFF;
+    --button-bg: #333333;
+    --button-text: #FFFFFF;
+    --button-hover: #555555;
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    color: #333333;
-    background-color: #F8F8F8;
-    font-size: 13px;
-    line-height: 1.5;
+    font-family: 'Inter', "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-main);
+    background: var(--bg-main);
+    background-attachment: fixed;
+    font-size: 14px;
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 a {
-    color: #0066CC;
+    color: var(--link-color);
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 a:hover {
+    color: var(--link-hover);
     text-decoration: underline;
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     margin-bottom: 10px;
-    font-weight: normal;
-    color: #333333;
+    font-weight: 600;
+    color: var(--text-heading);
+    transition: color 0.3s ease;
 }
 
-/* ★★★ 変更点 1: コンテナをレスポンシブ化 ★★★ */
+/* グラスモーフィズムのための共通クラス・設定 */
+.glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
 .container {
-    width: 90%; /* 画面幅の90%を使用 */
-    max-width: 980px; /* 最大幅は980pxに制限 */
-    margin: 0 auto;
-    background-color: #FFFFFF;
+    width: 90%;
+    max-width: 980px;
+    margin: 20px auto; 
+    background-color: var(--bg-container);
+    border-radius: 0; /* フラット */
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 /* ============================================== */
 /* 2. グローバルナビゲーション (上部のグレーのバー) */
 /* ============================================== */
 .global-nav {
-    background: linear-gradient(to bottom, #E0E0E0 0%, #CCCCCC 100%);
-    border-bottom: 1px solid #B0B0B0;
-    padding: 5px 0;
+    background: var(--bg-nav);
+    border-bottom: 1px solid var(--border-nav);
+    padding: 10px 0;
     text-align: center;
-    font-size: 11px;
+    font-size: 13px;
     white-space: nowrap;
-    overflow-x: auto; /* スマホでも横スクロールでナビ全体を表示 */
+    overflow-x: auto;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 .global-nav a {
-    color: #333333;
-    padding: 0 10px;
-    border-right: 1px solid #AAAAAA;
+    color: var(--link-nav);
+    padding: 0 15px;
+    border-right: 1px solid var(--border-color);
     display: inline-block;
     line-height: 18px;
+    font-weight: 600;
 }
-/* ... apple-logo のCSSは省略（変更なし） ... */
 .global-nav .apple-logo {
     display: inline-block;
     width: 16px;
@@ -62,36 +132,47 @@ h1, h2, h3, h4, h5, h6 {
     background-size: contain;
     vertical-align: middle;
     margin-right: 5px;
-    border-right: 1px solid #AAAAAA;
+    border-right: 1px solid var(--border-color);
 }
-/**.global-nav a:first-child {
-    padding-left: 20px;
-    border-left: 1px solid #FFFFFF;
-}**/
 .global-nav a:last-child {
     border-right: none;
 }
 .global-nav a:hover {
-    color: #000000;
+    color: var(--link-nav-hover);
     text-decoration: none;
+}
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 5px;
+    margin-left: 10px;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+}
+.theme-toggle:hover {
+    transform: scale(1.15);
 }
 
 /* ============================================== */
 /* 3. サブナビゲーション (白いバー) */
 /* ============================================== */
 .sub-nav {
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #DDDDDD;
-    padding: 8px 0;
+    background-color: var(--bg-subnav);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
     text-align: center;
-    font-size: 11px;
+    font-size: 13px;
     white-space: nowrap;
-    overflow-x: auto; /* スマホでも横スクロールでナビ全体を表示 */
+    overflow-x: auto;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 .sub-nav a {
-    color: #333333;
-    padding: 0 10px;
-    border-right: 1px solid #DDDDDD;
+    color: var(--link-nav);
+    padding: 0 15px;
+    border-right: 1px solid var(--border-color);
     display: inline-block;
     line-height: 16px;
 }
@@ -99,182 +180,281 @@ h1, h2, h3, h4, h5, h6 {
     border-right: none;
 }
 .sub-nav a:hover {
-    color: #000000;
+    color: var(--link-nav-hover);
     text-decoration: none;
 }
 .sub-nav strong {
-    font-weight: bold;
-    color: #000000;
+    font-weight: 600;
+    color: var(--text-heading);
 }
 
 /* ============================================== */
 /* 4. メインコンテンツ (ヒーローセクション) */
 /* ============================================== */
 .hero-section {
-    background-color: #FFFFFF;
-    padding: 40px 0;
-    border-bottom: 1px solid #DDDDDD;
+    background-color: transparent;
+    padding: 50px 0;
+    border-bottom: 1px solid var(--border-color);
     text-align: center;
     position: relative;
+    transition: background-color 0.3s ease;
 }
 
-/* ★★★ 変更点 2: メインコンテンツの折り返し設定 ★★★ */
 .hero-section .main-content {
     display: flex;
-    flex-wrap: wrap; /* 画面が狭くなったら折り返す */
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     max-width: 900px;
     margin: 0 auto;
 }
 
-/* ★★★ 変更点 3: 画像と情報の幅設定を削除（メディアクエリで制御） ★★★ */
 .hero-section .product-image {
-    flex: 0 0 auto; /* 幅指定を削除 */
+    flex: 0 0 auto;
     text-align: right;
     padding-right: 30px;
 }
 .hero-section .product-image img {
     max-width: 100%;
     height: auto;
+    border-radius: 0; /* フラット */
 }
 .hero-section .product-info {
     flex: 1;
-    min-width: 300px; /* 最小幅を設定し、それ未満では画像の下に配置されるようにする */
+    min-width: 300px;
     text-align: left;
 }
 .hero-section h1 {
-    font-size: 32px;
-    color: #000000;
-    margin-bottom: 10px;
+    font-size: 36px;
+    color: var(--text-heading);
+    margin-bottom: 15px;
 }
 .hero-section p {
     font-size: 16px;
-    color: #555555;
-    margin-bottom: 20px;
+    color: var(--text-muted);
+    margin-bottom: 25px;
 }
 .hero-section .cta {
     font-size: 18px;
-    color: #000000;
-    font-weight: bold;
+    color: var(--link-color);
+    font-weight: 700;
 }
 
 /* ============================================== */
 /* 5. ニュースヘッドライン (下部のセクション) */
 /* ============================================== */
 .news-section {
-    background-color: #F8F8F8;
-    padding: 20px 0;
+    background-color: transparent;
+    padding: 40px 0;
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 .news-section h3 {
-    font-size: 14px;
-    color: #000000;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #DDDDDD;
-    padding-bottom: 5px;
+    font-size: 20px;
+    color: var(--text-heading);
+    margin-bottom: 25px;
     display: inline-block;
 }
 
-/* ★★★ 変更点 4: ニュースアイテムの折り返し設定 ★★★ */
 .news-items {
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap; /* 画面が狭くなったら折り返す */
-    padding: 0 20px; /* 画面端に近すぎないよう調整 */
+    flex-wrap: wrap;
+    padding: 0 20px;
 }
 .news-item {
-    background-color: #FFFFFF;
-    border: 1px solid #DDDDDD;
-    width: 200px; 
-    flex-grow: 1; /* 画面が広ければ拡大 */
-    max-width: 280px; /* 最大幅を設けて不必要に大きくならないように */
-    padding: 10px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 0; /* フラット */
+    width: 220px; 
+    flex-grow: 1;
+    max-width: 300px;
+    padding: 15px;
     text-align: left;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.2s ease, background-color 0.3s ease;
 }
+.news-item:hover {
+    transform: translateY(-4px);
+    background-color: var(--bg-container); /* ホバー時に少し色を濃く */
+}
+
 .news-item img {
     max-width: 100%;
     height: auto;
-    margin-bottom: 10px;
+    border-radius: 0; /* フラット */
+    margin-bottom: 15px;
 }
 .news-item h4 {
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 .news-item p {
-    font-size: 11px;
-    color: #666666;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
 }
 
 /* ============================================== */
-/* 6. フッター */
+/* 6. ブログ投稿 / コースリスト用のスタイル (インラインスタイルからの移行) */
+/* ============================================== */
+.blog-post {
+    color: var(--text-main);
+}
+.blog-post h1, .blog-post h2, .blog-post h3 {
+    color: var(--text-heading);
+}
+.blog-post hr {
+    border-top: 1px solid var(--border-color) !important;
+}
+.post-content {
+    color: var(--text-main);
+}
+
+/* Study_Network 用 */
+.course-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.course-item {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0; /* フラット */
+    padding: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+.course-item:hover {
+    transform: translateY(-2px);
+    background-color: var(--bg-container) !important;
+}
+.course-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-heading) !important;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--border-color) !important;
+    padding-bottom: 8px;
+}
+.course-item p {
+    font-size: 14px;
+    color: var(--text-muted) !important;
+    margin: 0;
+}
+.course-links {
+    margin-top: 15px;
+}
+.course-links a {
+    display: inline-block;
+    background-color: var(--button-bg) !important;
+    color: var(--button-text) !important;
+    padding: 8px 18px;
+    border-radius: 0; /* フラット */
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+.course-links a:hover {
+    background-color: var(--button-hover) !important;
+}
+
+/* ============================================== */
+/* 7. フッター */
 /* ============================================== */
 .footer {
-    background-color: #E0E0E0;
-    border-top: 1px solid #B0B0B0;
-    padding: 20px 0;
+    background-color: var(--bg-footer);
+    border-top: 1px solid var(--border-nav);
+    padding: 30px 0;
     text-align: center;
-    font-size: 10px;
-    color: #666666;
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: background-color 0.3s ease;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 .footer a {
-    color: #0066CC;
+    color: var(--link-color);
     margin: 0 5px;
 }
 
 /* ============================================== */
-/* ★★★ 7. メディアクエリ (スマートフォン向け調整) ★★★ */
+/* 8. ローディング画面 (追加) */
+/* ============================================== */
+#page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg-main);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+.loader-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid var(--text-heading);
+    border-radius: 50%; /* スピナーだけは回転のため丸く */
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ============================================== */
+/* 9. メディアクエリ (スマートフォン向け調整) */
 /* ============================================== */
 @media (max-width: 768px) {
-    
-    /* コンテナの幅を広げ、パディングを追加 */
     .container {
         width: 100%;
+        margin: 0 auto;
     }
-
-    /* ヒーローセクション：画像を上に、情報を下に縦積み */
     .hero-section {
-        padding: 30px 0;
+        padding: 40px 0;
     }
     .hero-section .main-content {
-        flex-direction: column; /* 縦並び */
+        flex-direction: column;
         padding: 0 20px;
     }
     .hero-section .product-image {
         padding-right: 0;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         text-align: center;
     }
     .hero-section .product-info {
-        text-align: center; /* テキストを中央寄せ */
+        text-align: center;
         min-width: auto;
     }
-    
-    /* フォントサイズ調整 */
     .hero-section h1 {
         font-size: 28px;
     }
     .hero-section p {
-        font-size: 14px;
+        font-size: 15px;
     }
-    
-    /* ニュースアイテムを1列表示に近くする */
     .news-items {
-        flex-direction: column; /* 縦並び */
+        flex-direction: column;
         align-items: center;
     }
     .news-item {
         width: 90%;
         max-width: 400px;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
-    
-    /* グローバルナビゲーションをよりコンパクトに */
     .global-nav a {
-        padding: 0 8px;
+        padding: 0 10px;
     }
-    
 }

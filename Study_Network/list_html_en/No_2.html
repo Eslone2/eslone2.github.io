@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
             font-size: 13px;
         }
         table th, table td {
-            border: 1px solid #DDDDDD;
+            border: 1px solid var(--border-color);
             padding: 8px;
             text-align: left;
         }
@@ -41,6 +41,7 @@
             color: #4CAF50;
         }
     </style>
+<script src="../../js/theme-toggle.js"></script>
 </head>
 <body>
 
@@ -49,6 +50,7 @@
         <a href="../../articlelist.html">Blogs</a>
         <a href="https://lit.link/eslone_mots2">Contact</a>
         <a href="https://github.com/Eslone2">Codes</a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">&#x1F313;</button>
     </div>
 
     <div class="sub-nav">
@@ -59,25 +61,25 @@
     <div class="container">
         <div class="blog-post" style="padding: 40px 60px;">
             
-            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid #DDDDDD; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
                 💻 Network Construction Workshop (Session 2)
             </h1>
             
-            <p style="font-size: 11px; color: #666;">
+            <p style="font-size: 11px; color: var(--text-muted);">
                 Posted on <span style="font-weight: bold;">May 6, 2026</span> by Eslone | <a href="#">Workshop Materials</a>
             </p>
 
-            <hr style="border: 0; border-top: 1px solid #EEEEEE; margin: 30px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
             <div class="post-content" style="font-size: 14px; margin-top: 30px;">
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🎯 Final Goals for this Session</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🎯 Final Goals for this Session</h2>
                 <ul>
                     <li>Be able to connect to network devices (routers and switches) using Teraterm.</li>
                     <li>Understand the differences between basic operating modes and execute status check commands.</li>
                 </ul>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">📥 1. How to Connect with Teraterm</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📥 1. How to Connect with Teraterm</h2>
                 <p>Use "Teraterm" installed in Session 1 to connect to network devices (Cisco routers and switches).</p>
                 <p>In most cases, when performing initial configuration, you connect the PC directly to the device using a special cable called a "console cable" (serial connection).</p>
                 
@@ -91,14 +93,14 @@
                     <strong>Note:</strong> Ensure that the speed (Baud rate) is set to <strong>9600</strong> in the serial port settings (Setup -> Serial port) (the standard setting for Cisco devices).
                 </div>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">⚙️ 2. Three Modes of Network Devices</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">⚙️ 2. Three Modes of Network Devices</h2>
                 <p>Once successfully connected, text will appear on a black screen. Cisco devices (IOS) mainly have three modes depending on operating privileges.</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">① User EXEC Mode ( <code>&gt;</code> )</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">① User EXEC Mode ( <code>&gt;</code> )</h3>
                 <p>This is the mode immediately after connecting. The prompt (input waiting symbol) looks like <code>Router&gt;</code>.</p>
                 <p>In this mode, you can only execute limited verification commands, and no configuration changes can be made.</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">② Privileged EXEC Mode ( <code>#</code> )</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">② Privileged EXEC Mode ( <code>#</code> )</h3>
                 <p>In this mode, you can execute all verification commands, save files, restart, etc. The prompt changes to <code>Router#</code>.</p>
                 <p>To transition from User EXEC mode, enter the following command.</p>
                 <div class="command-box">
@@ -106,7 +108,7 @@
                     Router#
                 </div>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">③ Global Configuration Mode ( <code>(config)#</code> )</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">③ Global Configuration Mode ( <code>(config)#</code> )</h3>
                 <p>This is the mode for configuring the entire device (such as assigning IP addresses and setting up routing). The prompt changes to <code>Router(config)#</code>.</p>
                 <div class="command-box">
                     Router# <strong>configure terminal</strong><br>
@@ -114,10 +116,10 @@
                 </div>
                 <p>Use the <code>exit</code> command to return to the previous mode.</p>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: #000000; font-weight: bold;">🔍 3. Basic Status Check Commands</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔍 3. Basic Status Check Commands</h2>
                 <p>Here are two very important verification commands frequently used in Privileged EXEC Mode (<code>#</code>).</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">show ip interface brief</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">show ip interface brief</h3>
                 <p>You can view a list of IP addresses for each interface (ports where LAN cables are plugged in) and their communication status (UP/DOWN).</p>
                 <div class="command-box">
                     Router# <strong>show ip interface brief</strong><br>
@@ -126,7 +128,7 @@
                     GigabitEthernet0/1     unassigned      YES unset  administratively down down
                 </div>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: #333; font-weight: bold;">show running-config</h3>
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">show running-config</h3>
                 <p>Displays "all configurations (configs)" currently running on the device. Used to verify if the settings you made have been correctly applied.</p>
                 <div class="command-box">
                     Router# <strong>show running-config</strong><br>
@@ -134,7 +136,7 @@
                     (Below, the settings will be displayed in a long list. You can press the spacebar to page down)
                 </div>
 
-                <hr style="border: 0; border-top: 1px solid #DDDDDD; margin: 30px 0;">
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
 
                 <p style="text-align: center; font-size: 13px;">
                     <a href="No_1.html">&larr; Go to Session 1</a> | <a href="../../index.html">Return to Home</a> | <a href="No_3.html">Go to Session 3 &rarr;</a>
