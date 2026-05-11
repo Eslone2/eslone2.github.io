@@ -1,6 +1,15 @@
 /* ============================================== */
 /* 1. 全体設定と基本スタイル */
 /* ============================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
+}
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
@@ -91,6 +100,8 @@ body {
     font-size: 14px;
     line-height: 1.6;
     transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 a {
@@ -711,7 +722,8 @@ table th {
         left: 0;
         width: 100vw;
         height: 100vh !important;
-        background-color: #ffffff !important; /* 透明度を完全に除去 */
+        background-color: #ffffff !important;
+        /* 透明度を完全に除去 */
         background-image: none !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
@@ -724,7 +736,8 @@ table th {
     }
 
     [data-theme="dark"] .nav-right {
-        background-color: #1a1a1a !important; /* ダークモード時の不透明色 */
+        background-color: #1a1a1a !important;
+        /* ダークモード時の不透明色 */
     }
 
     .nav-right.active {
@@ -759,5 +772,26 @@ table th {
 
     .footer-right {
         margin-bottom: 0;
+    }
+
+    /* インラインで指定されているパディングをモバイル向けに上書き */
+    .blog-post, 
+    .article-list-section {
+        padding: 30px 15px !important;
+    }
+
+    /* テーブルが画面を突き破らないようにし、横スクロール可能にする */
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-collapse: collapse;
+    }
+
+    /* 画像がはみ出さないように念押し */
+    img {
+        max-width: 100%;
+        height: auto;
     }
 }
