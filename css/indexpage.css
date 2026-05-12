@@ -8,6 +8,9 @@
 html {
     overflow-x: hidden;
     width: 100%;
+    min-height: 100%;
+    background: var(--bg-main);
+    background-attachment: fixed;
     -webkit-text-size-adjust: 100%;
 }
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -102,6 +105,7 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
     width: 100%;
+    min-height: 100vh;
 }
 
 a {
@@ -793,5 +797,10 @@ table th {
     img {
         max-width: 100%;
         height: auto;
+    }
+
+    /* モバイルでのスクロール時の背景のガタツキ（白い隙間）を防止 */
+    html, body {
+        background-attachment: scroll !important;
     }
 }
