@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,7 +45,42 @@
                     <li>Understand the differences between basic operating modes and execute status check commands.</li>
                 </ul>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📥 1. How to Connect with Teraterm</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🧩 1. TCP, UDP, and Port Numbers</h2>
+                <p>In Session 1, we mentioned that "Layer 4 (Transport Layer)" is responsible for ensuring reliability. Here, we will learn about the two main protocols and port numbers.</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Differences Between TCP and UDP</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Protocol</th>
+                            <th>Characteristics</th>
+                            <th>Main Uses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>TCP</strong></td>
+                            <td><strong>Reliability focused</strong>. Verifies if data arrived and resends if missing.</td>
+                            <td>Web browsing, Email, File transfer, etc.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>UDP</strong></td>
+                            <td><strong>Speed focused</strong>. Sends data without waiting for confirmation.</td>
+                            <td>Video streaming, VoIP, Online gaming, etc.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">What are Port Numbers?</h3>
+                <p>If an IP address is like a "house address," a port number is like specifying "which room (window) to deliver to." Here are some common port numbers:</p>
+                <ul>
+                    <li><strong>80</strong> : HTTP (Web browsing)</li>
+                    <li><strong>443</strong> : HTTPS (Secure web browsing)</li>
+                    <li><strong>22</strong> : SSH (Secure remote operation)</li>
+                    <li><strong>23</strong> : Telnet (Remote operation)</li>
+                </ul>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📥 2. How to Connect with Teraterm</h2>
                 <p>Use "Teraterm" installed in Session 1 to connect to network devices (Cisco routers and switches).</p>
                 <p>In most cases, when performing initial configuration, you connect the PC directly to the device using a special cable called a "console cable" (serial connection).</p>
                 

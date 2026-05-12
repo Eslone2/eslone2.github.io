@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -45,7 +45,42 @@
                     <li>機器の基本的な操作モードの違いを理解し、状態確認コマンドを実行できる。</li>
                 </ul>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📥 1. Teratermでの接続方法</h2>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🧩 1. TCP・UDPとポート番号</h2>
+                <p>第1回で「レイヤ4（トランスポート層）」は信頼性の確保が役割だと言いました。ここではその主役となる2つのプロトコルと、ポート番号について学びます。</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">TCPとUDPの違い</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>プロトコル</th>
+                            <th>特徴</th>
+                            <th>主な用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>TCP</strong></td>
+                            <td><strong>信頼性重視</strong>。届いたか確認し、無ければ再送する。</td>
+                            <td>Web閲覧、メール、ファイル転送など</td>
+                        </tr>
+                        <tr>
+                            <td><strong>UDP</strong></td>
+                            <td><strong>スピード重視</strong>。確認せず送りっぱなしにする。</td>
+                            <td>動画配信、音声通話、オンラインゲームなど</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">ポート番号とは？</h3>
+                <p>IPアドレスが「家の住所」だとしたら、ポート番号は「どの部屋（窓口）に届けるか」を指定する番号です。代表的なものは以下の通りです。</p>
+                <ul>
+                    <li><strong>80</strong> : HTTP（Webサイトの閲覧）</li>
+                    <li><strong>443</strong> : HTTPS（セキュアなWebサイトの閲覧）</li>
+                    <li><strong>22</strong> : SSH（安全なリモート操作）</li>
+                    <li><strong>23</strong> : Telnet（リモート操作）</li>
+                </ul>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📥 2. Teratermでの接続方法</h2>
                 <p>第1回でインストールした「Teraterm」を使用して、ネットワーク機器（Ciscoルータやスイッチ）に接続します。</p>
                 <p>多くの場合、初期設定を行う際は「コンソールケーブル」と呼ばれる専用のケーブルを使ってPCと機器を直接繋ぎます（シリアル接続）。</p>
                 
