@@ -72,13 +72,79 @@
                 </table>
 
                 <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">What are Port Numbers?</h3>
-                <p>If an IP address is like a "house address," a port number is like specifying "which room (window) to deliver to." Here are some common port numbers:</p>
-                <ul>
-                    <li><strong>80</strong> : HTTP (Web browsing)</li>
-                    <li><strong>443</strong> : HTTPS (Secure web browsing)</li>
-                    <li><strong>22</strong> : SSH (Secure remote operation)</li>
-                    <li><strong>23</strong> : Telnet (Remote operation)</li>
-                </ul>
+                <p>If an IP address is like a "house address," a port number is like specifying "which room (window) to deliver to." They range from 0 to 65535, with 0 to 1023 being "Well-known Ports" reserved for major services.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Port</th>
+                            <th>Service Name</th>
+                            <th>Main Roles / Keywords</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>22</strong></td>
+                            <td><strong>SSH</strong></td>
+                            <td>Secure remote operation (encrypted). Standard for server management.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>23</strong></td>
+                            <td><strong>Telnet</strong></td>
+                            <td>Remote operation (unencrypted). Used for testing/verification.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>25 / 587</strong></td>
+                            <td><strong>SMTP</strong></td>
+                            <td>Sending emails. Port 587 is the secure version.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>53</strong></td>
+                            <td><strong>DNS</strong></td>
+                            <td>Name resolution (converting URLs to IP addresses).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>67 / 68</strong></td>
+                            <td><strong>DHCP</strong></td>
+                            <td>Automatic IP address assignment.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>80</strong></td>
+                            <td><strong>HTTP</strong></td>
+                            <td>Web browsing.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>110 / 995</strong></td>
+                            <td><strong>POP3</strong></td>
+                            <td>Receiving emails (downloading to devices).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>123</strong></td>
+                            <td><strong>NTP</strong></td>
+                            <td>Time synchronization.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>143 / 993</strong></td>
+                            <td><strong>IMAP</strong></td>
+                            <td>Receiving emails (managed on the server side). Modern standard.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>443</strong></td>
+                            <td><strong>HTTPS</strong></td>
+                            <td>Secure web browsing.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3306</strong></td>
+                            <td><strong>MySQL</strong></td>
+                            <td>Connecting to databases.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3389</strong></td>
+                            <td><strong>RDP</strong></td>
+                            <td>Windows Remote Desktop.</td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📥 2. How to Connect with Teraterm</h2>
                 <p>Use "Teraterm" installed in Session 1 to connect to network devices (Cisco routers and switches).</p>
@@ -117,24 +183,59 @@
                 </div>
                 <p>Use the <code>exit</code> command to return to the previous mode.</p>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔍 3. Basic Status Check Commands</h2>
-                <p>Here are two very important verification commands frequently used in Privileged EXEC Mode (<code>#</code>).</p>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔍 3. Basic Commands for Status and Operations</h2>
+                <p>These are commands frequently used in Privileged EXEC Mode (<code>#</code>). Let's compare commands for Cisco devices with Alaxala devices, which are common in Japan.</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">show ip interface brief</h3>
-                <p>You can view a list of IP addresses for each interface (ports where LAN cables are plugged in) and their communication status (UP/DOWN).</p>
-                <div class="command-box">
-                    Router# <strong>show ip interface brief</strong><br>
-                    Interface              IP-Address      OK? Method Status                Protocol<br>
-                    GigabitEthernet0/0     192.168.1.1     YES manual up                    up<br>
-                    GigabitEthernet0/1     unassigned      YES unset  administratively down down
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Purpose</th>
+                            <th>Cisco (Catalyst, etc.)</th>
+                            <th>Alaxala (AX Series)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Enter Config Mode</strong></td>
+                            <td><code>configure terminal</code></td>
+                            <td><code>configure</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Save Configuration</strong></td>
+                            <td><code>write memory</code></td>
+                            <td><code>save</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Check Running Config</strong></td>
+                            <td><code>show running-config</code></td>
+                            <td><code>show running-config</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Check Startup Config</strong></td>
+                            <td><code>show startup-config</code></td>
+                            <td><code>show startup-config</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Restart Device</strong></td>
+                            <td><code>reload</code></td>
+                            <td><code>reload</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Check Version/Model</strong></td>
+                            <td><code>show version</code></td>
+                            <td><code>show version</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Check Logs</strong></td>
+                            <td><code>show logging</code></td>
+                            <td><code>show logging</code></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">show running-config</h3>
-                <p>Displays "all configurations (configs)" currently running on the device. Used to verify if the settings you made have been correctly applied.</p>
-                <div class="command-box">
-                    Router# <strong>show running-config</strong><br>
-                    Building configuration...<br>
-                    (Below, the settings will be displayed in a long list. You can press the spacebar to page down)
+                <div class="note">
+                    <strong>Important: Don't forget to save your settings!</strong><br>
+                    Simply changing the settings is not enough; they will disappear if the device is powered off. After you finish your work, always run <code>write memory</code> (Cisco) or <code>save</code> (Alaxala) to save your configuration.
                 </div>
 
                 <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">

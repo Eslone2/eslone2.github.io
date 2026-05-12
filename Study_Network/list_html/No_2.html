@@ -72,13 +72,79 @@
                 </table>
 
                 <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">ポート番号とは？</h3>
-                <p>IPアドレスが「家の住所」だとしたら、ポート番号は「どの部屋（窓口）に届けるか」を指定する番号です。代表的なものは以下の通りです。</p>
-                <ul>
-                    <li><strong>80</strong> : HTTP（Webサイトの閲覧）</li>
-                    <li><strong>443</strong> : HTTPS（セキュアなWebサイトの閲覧）</li>
-                    <li><strong>22</strong> : SSH（安全なリモート操作）</li>
-                    <li><strong>23</strong> : Telnet（リモート操作）</li>
-                </ul>
+                <p>IPアドレスが「家の住所」だとしたら、ポート番号は「どの部屋（窓口）に届けるか」を指定する番号です。0〜65535番まであり、特に0〜1023番は「ウェルノウンポート」と呼ばれ、主要なサービスに割り当てられています。</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ポート</th>
+                            <th>サービス名</th>
+                            <th>主な用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>22</strong></td>
+                            <td><strong>SSH</strong></td>
+                            <td>安全なリモート操作（暗号化あり）。サーバー管理の標準。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>23</strong></td>
+                            <td><strong>Telnet</strong></td>
+                            <td>リモート操作（暗号化なし）。検証用に使われる。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>25 / 587</strong></td>
+                            <td><strong>SMTP</strong></td>
+                            <td>メールの送信。587番はセキュリティ対応版。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>53</strong></td>
+                            <td><strong>DNS</strong></td>
+                            <td>名前解決（URLとIPアドレスの変換）。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>67 / 68</strong></td>
+                            <td><strong>DHCP</strong></td>
+                            <td>IPアドレスの自動割り当て。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>80</strong></td>
+                            <td><strong>HTTP</strong></td>
+                            <td>Webサイトの閲覧。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>110 / 995</strong></td>
+                            <td><strong>POP3</strong></td>
+                            <td>メールの受信（端末にダウンロードする形式）。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>123</strong></td>
+                            <td><strong>NTP</strong></td>
+                            <td>時刻同期。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>143 / 993</strong></td>
+                            <td><strong>IMAP</strong></td>
+                            <td>メールの受信（サーバー上で管理する形式）。現在の主流。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>443</strong></td>
+                            <td><strong>HTTPS</strong></td>
+                            <td>セキュアなWebサイトの閲覧。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3306</strong></td>
+                            <td><strong>MySQL</strong></td>
+                            <td>データベースへの接続。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3389</strong></td>
+                            <td><strong>RDP</strong></td>
+                            <td>Windowsのリモートデスクトップ。</td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📥 2. Teratermでの接続方法</h2>
                 <p>第1回でインストールした「Teraterm」を使用して、ネットワーク機器（Ciscoルータやスイッチ）に接続します。</p>
@@ -117,24 +183,59 @@
                 </div>
                 <p>元のモードに戻るには <code>exit</code> コマンドを使用します。</p>
 
-                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔍 3. 状態確認の基本コマンド</h2>
-                <p>特権EXECモード（<code>#</code>）でよく使う、非常に重要な確認コマンドを2つ紹介します。</p>
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔍 3. 状態確認と運用の基本コマンド</h2>
+                <p>特権EXECモード（<code>#</code>）でよく使うコマンドです。Cisco機器と、日本国内でよく使われるAlaxala（アラクサラ）機器のコマンドを比較して見てみましょう。</p>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">show ip interface brief</h3>
-                <p>各インターフェース（LANケーブルを挿すポート）のIPアドレスや、通信できる状態（UP/DOWN）を一覧で確認できます。</p>
-                <div class="command-box">
-                    Router# <strong>show ip interface brief</strong><br>
-                    Interface              IP-Address      OK? Method Status                Protocol<br>
-                    GigabitEthernet0/0     192.168.1.1     YES manual up                    up<br>
-                    GigabitEthernet0/1     unassigned      YES unset  administratively down down
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>用途</th>
+                            <th>Cisco (Catalyst等)</th>
+                            <th>Alaxala (AXシリーズ)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>設定モードへ移行</strong></td>
+                            <td><code>configure terminal</code></td>
+                            <td><code>configure</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>設定の保存</strong></td>
+                            <td><code>write memory</code></td>
+                            <td><code>save</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>動作中の設定確認</strong></td>
+                            <td><code>show running-config</code></td>
+                            <td><code>show running-config</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>保存済み設定の確認</strong></td>
+                            <td><code>show startup-config</code></td>
+                            <td><code>show startup-config</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>機器の再起動</strong></td>
+                            <td><code>reload</code></td>
+                            <td><code>reload</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>バージョン・モデル確認</strong></td>
+                            <td><code>show version</code></td>
+                            <td><code>show version</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>ログの確認</strong></td>
+                            <td><code>show logging</code></td>
+                            <td><code>show logging</code></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">show running-config</h3>
-                <p>現在機器で動いている「すべての設定（コンフィグ）」を表示します。自分が設定した内容が正しく反映されているかを確認するために使います。</p>
-                <div class="command-box">
-                    Router# <strong>show running-config</strong><br>
-                    Building configuration...<br>
-                    (以下、設定内容がずらっと表示されます。スペースキーでページ送りできます)
+                <div class="note">
+                    <strong>重要：設定の保存を忘れずに！</strong><br>
+                    設定を変更しただけでは、機器の電源を切ると設定が消えてしまいます。作業が終わったら必ず <code>write memory</code> (Cisco) や <code>save</code> (Alaxala) を実行して、設定を保存しましょう。
                 </div>
 
                 <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
