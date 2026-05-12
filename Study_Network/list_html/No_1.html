@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -52,6 +52,42 @@
                 <div class="note">
                     <strong>注意：</strong> 第２回以降で使用する予定です！！消さないでね！！
                 </div>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📚 OSI参照モデルとレイヤ</h2>
+                <p>ネットワークの世界には、通信の機能を整理するための<strong>「OSI参照モデル」</strong>という共通のルールがあります。機能を「レイヤ（階層）」に分けることで、どこで何が行われているかを分かりやすくしています。</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>レイヤ</th>
+                            <th>名称</th>
+                            <th>主な役割・キーワード</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>第1層</strong></td>
+                            <td><strong>物理層</strong></td>
+                            <td>ケーブルの形状、コネクタ、電気信号、光、電波など。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>第2層</strong></td>
+                            <td><strong>データリンク層</strong></td>
+                            <td>MACアドレス、L2スイッチ。同じネットワーク内の通信。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>第3層</strong></td>
+                            <td><strong>ネットワーク層</strong></td>
+                            <td>IPアドレス、ルータ。異なるネットワーク間の通信。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>第4層</strong></td>
+                            <td><strong>トランスポート層</strong></td>
+                            <td>ポート番号、TCP/UDP。通信の信頼性の確保。</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 12px; color: var(--text-muted);">※第5〜7層（セッション/プレゼンテーション/アプリケーション層）は、主にアプリやソフトウェアが担当する部分です。</p>
 
                 <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🌐 IPアドレスやサブネットマスク、ネットワークアドレスの仕組み</h2>
 
