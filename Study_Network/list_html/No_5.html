@@ -90,6 +90,30 @@
                     </tbody>
                 </table>
 
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">⚙️ Cisco機器での設定例</h2>
+                <p>実際にCiscoのスイッチ（Catalystなど）でVLANを設定する際の基本的なコマンドです。</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">1. VLANの作成</h3>
+                <div class="command-box">
+                    Switch(config)# <strong>vlan 10</strong><br>
+                    Switch(config-vlan)# <strong>name Sales</strong>
+                </div>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">2. アクセスポートの設定</h3>
+                <p>ポートを特定のVLANに所属させます。</p>
+                <div class="command-box">
+                    Switch(config)# <strong>interface gigabitEthernet 0/1</strong><br>
+                    Switch(config-if)# <strong>switchport mode access</strong><br>
+                    Switch(config-if)# <strong>switchport access vlan 10</strong>
+                </div>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">3. トランクポートの設定</h3>
+                <p>複数のVLANを通すポートを設定します。</p>
+                <div class="command-box">
+                    Switch(config)# <strong>interface gigabitEthernet 0/24</strong><br>
+                    Switch(config-if)# <strong>switchport mode trunk</strong>
+                </div>
+
                 <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📝 まとめ</h2>
                 <ul>
                     <li><strong>VLAN</strong>：論理的にネットワークを分ける技術。</li>

@@ -47,13 +47,13 @@
                 </ul>
 
                 <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🌐 What is VLAN (Virtual LAN)?</h2>
-                <p>VLAN is a technology that **logically divides a network (broadcast domain)** within a switch, regardless of physical connections.</p>
+                <p>VLAN is a technology that <strong>logically divides a network (broadcast domain)</strong> within a switch, regardless of physical connections.</p>
                 
                 <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">Benefits of Using VLANs</h3>
                 <ul>
-                    <li>**Improved Security**: You can isolate networks by department or purpose, blocking unnecessary communication.</li>
-                    <li>**Network Efficiency**: By reducing the scope of broadcast traffic (broadcast domain), you can decrease unnecessary traffic.</li>
-                    <li>**Flexible Configuration**: Even if physical locations change, devices can remain in the same network through configuration changes.</li>
+                    <li><strong>Improved Security</strong>: You can isolate networks by department or purpose, blocking unnecessary communication.</li>
+                    <li><strong>Network Efficiency</strong>: By reducing the scope of broadcast traffic (broadcast domain), you can decrease unnecessary traffic.</li>
+                    <li><strong>Flexible Configuration</strong>: Even if physical locations change, devices can remain in the same network through configuration changes.</li>
                 </ul>
 
                 <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🏷️ VLAN Tags and IEEE 802.1Q</h2>
@@ -78,24 +78,48 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>**Access Port**</td>
+                            <td><strong>Access Port</strong></td>
                             <td>Belongs to only one VLAN. No tag is added.</td>
                             <td>Connecting end devices like PCs or printers.</td>
                         </tr>
                         <tr>
-                            <td>**Trunk Port**</td>
+                            <td><strong>Trunk Port</strong></td>
                             <td>Carries traffic from multiple VLANs over one link. Identified by tags.</td>
                             <td>Connecting switches together or to a router.</td>
                         </tr>
                     </tbody>
                 </table>
 
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">⚙️ Configuration Example (Cisco)</h2>
+                <p>These are the basic commands for configuring VLANs on a Cisco switch (e.g., Catalyst).</p>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">1. Creating a VLAN</h3>
+                <div class="command-box">
+                    Switch(config)# <strong>vlan 10</strong><br>
+                    Switch(config-vlan)# <strong>name Sales</strong>
+                </div>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">2. Configuring an Access Port</h3>
+                <p>Assign a port to a specific VLAN.</p>
+                <div class="command-box">
+                    Switch(config)# <strong>interface gigabitEthernet 0/1</strong><br>
+                    Switch(config-if)# <strong>switchport mode access</strong><br>
+                    Switch(config-if)# <strong>switchport access vlan 10</strong>
+                </div>
+
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">3. Configuring a Trunk Port</h3>
+                <p>Configure a port to carry traffic from multiple VLANs.</p>
+                <div class="command-box">
+                    Switch(config)# <strong>interface gigabitEthernet 0/24</strong><br>
+                    Switch(config-if)# <strong>switchport mode trunk</strong>
+                </div>
+
                 <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📝 Summary</h2>
                 <ul>
-                    <li>**VLAN**: Technology to logically divide networks.</li>
-                    <li>**VLAN Tag**: A label used to identify VLANs between switches.</li>
-                    <li>**Access Port**: For a single VLAN (terminal-facing).</li>
-                    <li>**Trunk Port**: For multiple VLANs (switch/router-facing).</li>
+                    <li><strong>VLAN</strong>: Technology to logically divide networks.</li>
+                    <li><strong>VLAN Tag</strong>: A label used to identify VLANs between switches.</li>
+                    <li><strong>Access Port</strong>: For a single VLAN (terminal-facing).</li>
+                    <li><strong>Trunk Port</strong>: For multiple VLANs (switch/router-facing).</li>
                 </ul>
 
                 <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
