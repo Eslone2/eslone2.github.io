@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Eslone's HP - ネットワーク構築 講習会（第五回）</title>
+    <link rel="stylesheet" href="../../css/indexpage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../js/theme-toggle.js"></script>
+</head>
+<body>
+
+        <div class="global-nav">
+        <div class="nav-left">
+            <strong><a href="../../index.html">えすろんのホームページ</a></strong>
+        </div>
+        <div class="menu-toggle">☰</div>
+        <div class="nav-right">
+            <a href="../../index.html">Home</a>
+            <a href="../../articlelist.html">Blogs</a>
+            <a href="../../Study_Network/index.html">Network</a>
+            <a href="../../HTML/about_me.html">About</a>
+            <a href="https://lit.link/eslone_mots2">Contact</a>
+            <a href="https://github.com/Eslone2">Codes</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="blog-post" style="padding: 40px 60px;">
+            
+            <h1 style="font-size: 28px; font-weight: bold; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px;">
+                💻 ネットワーク構築 講習会（第五回）
+            </h1>
+            
+            <p style="font-size: 11px; color: var(--text-muted);">
+                Posted on <span style="font-weight: bold;">May 12, 2026</span> by Eslone2
+            </p>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
+
+            <div class="post-content" style="font-size: 14px; margin-top: 30px;">
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🎯 今回の最終目標</h2>
+                <ul>
+                    <li>VLAN (Virtual LAN) とは何かを理解する。</li>
+                    <li>VLANタグ（IEEE 802.1Q）の仕組みを理解する。</li>
+                    <li>アクセスポートとトランクポートの違いを理解する。</li>
+                </ul>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🌐 VLAN (Virtual LAN) とは？</h2>
+                <p>VLANとは、物理的な接続形態にとらわれず、スイッチ内部で<strong>論理的にネットワーク（ブロードキャストドメイン）を分割する技術</strong>です。</p>
+                
+                <h3 style="font-size: 16px; margin-top: 20px; color: var(--text-heading); font-weight: bold;">VLANを使うメリット</h3>
+                <ul>
+                    <li><strong>セキュリティの向上</strong>：部署や用途ごとにネットワークを分けることで、不要な通信を遮断できます。</li>
+                    <li><strong>ネットワーク効率の向上</strong>：ブロードキャスト通信が届く範囲（ブロードキャストドメイン）を小さくし、無駄なトラフィックを減らせます。</li>
+                    <li><strong>柔軟な構成</strong>：席替えなどで物理的な場所が変わっても、設定変更だけで同じネットワークに所属させることができます。</li>
+                </ul>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🏷️ VLANタグとIEEE 802.1Q</h2>
+                <p>複数のスイッチをまたいでVLANを構成する場合、どの通信がどのVLANに属しているかを識別する必要があります。そのための識別子が<strong>VLANタグ</strong>です。</p>
+                <p>現在最も一般的な規格は <strong>IEEE 802.1Q</strong> です。</p>
+
+                <div class="concept-box">
+                    <h4>💡 VLANタグの仕組み</h4>
+                    <p>通常のイーサネットフレームに、VLAN番号（VLAN ID）を含んだ「タグ」を挿入します。これにより、1本のケーブルで複数のVLANのデータを運ぶことが可能になります。</p>
+                </div>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">🔌 ポートの種類：アクセスとトランク</h2>
+                <p>スイッチのポートには、主に以下の2つの役割があります。</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ポートの種類</th>
+                            <th>特徴</th>
+                            <th>主な用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>アクセスポート</strong></td>
+                            <td>ただ1つのVLANのみに所属するポート。タグは付かない。</td>
+                            <td>PCやプリンタなどの端末を接続する。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>トランクポート</strong></td>
+                            <td>複数のVLANのトラフィックを1本で運ぶポート。タグで識別する。</td>
+                            <td>スイッチ同士やルータとの接続に使用する。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 style="font-size: 18px; margin-top: 30px; color: var(--text-heading); font-weight: bold;">📝 まとめ</h2>
+                <ul>
+                    <li><strong>VLAN</strong>：論理的にネットワークを分ける技術。</li>
+                    <li><strong>VLANタグ</strong>：スイッチ間でVLANを識別するための札。</li>
+                    <li><strong>アクセスポート</strong>：1つのVLAN用（端末向け）。</li>
+                    <li><strong>トランクポート</strong>：複数のVLAN用（スイッチ/ルータ向け）。</li>
+                </ul>
+
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 30px 0;">
+
+                <p style="text-align: center; font-size: 13px;">
+                    <a href="No_4.html">&larr; 第四回へ</a> | <a href="../index.html">ホームに戻る</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+        <div class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                Copyright &copy; 2024-2025 Eslone2. All rights reserved.
+            </div>
+            <div class="footer-right">
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="themeToggleCheckbox">
+                        <input type="checkbox" id="themeToggleCheckbox" />
+                        <div class="slider round"></div>
+                    </label>
+                    <span class="theme-switch-text" id="themeSwitchText">Light Mode</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
