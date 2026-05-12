@@ -21,18 +21,18 @@ html {
 :root {
     /* ライトモードの色変数 (フラット＆ガラス) */
     --bg-main: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-    --bg-container: rgba(255, 255, 255, 0.65);
-    --bg-nav: rgba(255, 255, 255, 0.4);
-    --bg-subnav: rgba(255, 255, 255, 0.5);
-    --bg-card: rgba(255, 255, 255, 0.55);
-    --bg-footer: rgba(232, 236, 239, 0.7);
+    --bg-container: #FFFFFF;
+    --bg-nav: #FFFFFF;
+    --bg-subnav: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --bg-footer: #E8ECEF;
 
     --text-main: #333333;
     --text-heading: #111111;
     --text-muted: #666666;
 
-    --border-color: rgba(0, 0, 0, 0.08);
-    --border-nav: rgba(0, 0, 0, 0.1);
+    --border-color: #E0E0E0;
+    --border-nav: #E0E0E0;
 
     --link-color: #0066CC;
     --link-hover: #004499;
@@ -60,18 +60,18 @@ html {
 :root[data-theme="dark"] {
     /* ダークモードの色変数 (フラット＆ガラス) */
     --bg-main: linear-gradient(135deg, #1f1c2c 0%, #000000 100%);
-    --bg-container: rgba(30, 30, 30, 0.65);
-    --bg-nav: rgba(20, 20, 20, 0.5);
-    --bg-subnav: rgba(25, 25, 25, 0.5);
-    --bg-card: rgba(40, 40, 40, 0.6);
-    --bg-footer: rgba(20, 20, 20, 0.7);
+    --bg-container: #1E1E1E;
+    --bg-nav: #141414;
+    --bg-subnav: #191919;
+    --bg-card: #282828;
+    --bg-footer: #141414;
 
     --text-main: #E0E0E0;
     --text-heading: #FFFFFF;
     --text-muted: #AAAAAA;
 
-    --border-color: rgba(255, 255, 255, 0.1);
-    --border-nav: rgba(255, 255, 255, 0.1);
+    --border-color: #333333;
+    --border-nav: #333333;
 
     --link-color: #66B2FF;
     --link-hover: #99CCFF;
@@ -135,10 +135,9 @@ h6 {
     transition: color 0.3s ease;
 }
 
-/* グラスモーフィズムのための共通クラス・設定 */
+/* グラスモーフィズムのための共通クラス・設定（透明度排除により無効化） */
 .glass {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    /* backdrop-filter 削除 */
 }
 
 .container {
@@ -151,8 +150,6 @@ h6 {
     border: 1px solid var(--border-color);
     transition: background-color 0.3s ease, border-color 0.3s ease;
     overflow: hidden;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 }
 
 /* ============================================== */
@@ -168,8 +165,6 @@ h6 {
     font-size: 13px;
     white-space: nowrap;
     overflow-x: auto;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     /* ナビゲーション全体を前面に配置 */
     position: relative;
     z-index: 10000;
@@ -379,8 +374,6 @@ input:checked+.slider:before {
     max-width: 300px;
     padding: 15px;
     text-align: left;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
@@ -445,8 +438,6 @@ input:checked+.slider:before {
     /* フラット */
     padding: 20px;
     margin-bottom: 20px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
@@ -504,8 +495,6 @@ input:checked+.slider:before {
     font-size: 13px;
     color: var(--text-muted);
     transition: background-color 0.3s ease;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 }
 
 .footer-content {
