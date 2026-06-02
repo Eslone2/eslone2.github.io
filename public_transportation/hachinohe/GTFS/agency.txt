@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone,agency_fare_url,agency_email
+"2000020022039","八戸市交通部","https://www.city.hachinohe.aomori.jp/section/bus/","Asia/Tokyo","ja","0178255141","",""

@@ -1,0 +1,2 @@
+feed_publisher_name,feed_publisher_url,feed_lang,feed_start_date,feed_end_date,feed_version
+"八戸市交通部","https://www.city.hachinohe.aomori.jp/section/bus/","ja","20260401","20270331","令和8年4月改正"

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八戸市営バス 経路・運賃乗換案内エンジン (完全版)</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #1e293b;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #004bb1;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+        .version-info {
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+        .lang-switch button {
+            background: #e2e8f0;
+            border: none;
+            padding: 6px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .lang-switch button.active {
+            background: #004bb1;
+            color: #fff;
+        }
+        .status-message {
+            padding: 12px;
+            background: #f0fdf4;
+            color: #166534;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 1px solid #bbf7d0;
+        }
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        label {
+            font-weight: bold;
+            font-size: 14px;
+            color: #475569;
+        }
+        input[type="text"], select {
+            padding: 12px;
+            font-size: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background-color: #fff;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .btn-search {
+            grid-column: 1 / -1;
+            padding: 14px;
+            background: #004bb1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-search:hover {
+            background: #003680;
+        }
+        .route-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+        .route-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+        .time-large {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .fare-container {
+            text-align: right;
+        }
+        .fare-badge {
+            font-size: 18px;
+            font-weight: bold;
+            color: #047857;
+            background: #d1fae5;
+            padding: 4px 12px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        .child-fare {
+            font-size: 12px;
+            color: #475569;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+        .route-details {
+            position: relative;
+            padding-left: 24px;
+        }
+        .route-details::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            bottom: 10px;
+            width: 4px;
+            background: #004bb1;
+            border-radius: 2px;
+        }
+        .node {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .node::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border: 3px solid #004bb1;
+            border-radius: 50%;
+        }
+        .node.destination::before {
+            border-color: #047857;
+        }
+        .bus-info {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin: 6px 0;
+            display: inline-block;
+        }
+        .no-data {
+            text-align: center;
+            color: #94a3b8;
+            padding: 40px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="title-text">🚌 八戸市営バス 経路・運賃乗換案内</h1>
+    <div class="version-info" id="feed-version">データ読込中...</div>
+
+    <div class="lang-switch">
+        <button id="btn-ja" class="active" onclick="switchLanguage('ja')">日本語</button>
+        <button id="btn-en" onclick="switchLanguage('en')">English</button>
+    </div>
+
+    <div id="status-box" class="status-message">八戸市営バス GTFSデータベースを結合中...</div>
+
+    <div class="search-grid">
+        <div class="form-group">
+            <label id="lbl-origin">出発地（乗車バス停）：</label>
+            <input type="text" id="origin-input" list="stop-list" placeholder="例: 八戸中心街ターミナル（八日町）">
+        </div>
+        <div class="form-group">
+            <label id="lbl-destination">目的地（降車バス停）：</label>
+            <input type="text" id="destination-input" list="stop-list" placeholder="例: 旭ヶ丘営業所">
+        </div>
+        <div class="form-group">
+            <label id="lbl-day">運行区分：</label>
+            <select id="day-select">
+                <option value="1_平日">平日 (Weekdays)</option>
+                <option value="4_土曜">土曜 (Saturdays)</option>
+                <option value="2_日祝">日祝 (Sundays & Holidays)</option>
+            </select>
+        </div>
+        <button class="btn-search" id="btn-search" onclick="searchRoutes()">経路を検索する</button>
+    </div>
+
+    <datalist id="stop-list"></datalist>
+
+    <div id="result-area">
+        <div class="no-data" id="init-message">出発地と目的地を入力して検索してください。</div>
+    </div>
+</div>
+
+<script>
+let stopsMap = {};          // stop_id -> {name, en, zone_id}
+let uniqueStopNames = new Set();
+let stopTimesByTrip = {};   // trip_id -> [ {stop_id, arr, dep, seq, headsign} ]
+let tripsMaster = {};       // trip_id -> {route_id, service_id, headsign, wheelchair}
+let fareRules = [];         // [ {fare_id, origin_id, dest_id, route_id} ]
+let fareAttributes = {};    // fare_id -> price
+let translations = {};      // 英語翻訳用辞書
+let currentLang = 'ja';
+
+window.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // 全14ファイルのうち、検索コアとなるテキストファイルを非同期で一網打尽にフェッチ
+        const [feedTxt, fareAttrTxt, fareRulesTxt, routesTxt, stopsTxt, tripsTxt, stopTimesTxt, transTxt] = await Promise.all([
+            fetch('GTFS_Hachinohe/feed_info.txt').then(r => r.text()),
+            fetch('GTFS_Hachinohe/fare_attributes.txt').then(r => r.text()),
+            fetch('GTFS_Hachinohe/fare_rules.txt').then(r => r.text()),
+            fetch('GTFS_Hachinohe/routes.txt').then(r => r.text()),
+            fetch('GTFS_Hachinohe/stops.txt').then(r => r.text()),
+            fetch('GTFS_Hachinohe/trips.txt').then(r => r.text()),
+            fetch('GTFS_Hachinohe/stop_times.txt').then(r => r.text()),
+            fetch('GTFS_Hachinohe/translations.txt').then(r => r.text())
+        ]);
+
+        // 1. バージョン情報の表示
+        const feedRows = parseCSV(feedTxt);
+        if(feedRows.length > 1) {
+            document.getElementById('feed-version').innerText = `データ適用バージョン: ${feedRows[1][5] || '令和8年4月改正ダイヤ'}`;
+        }
+
+        // 2. 翻訳テキストの解析（八戸形式: table_name, field_name, language, translation, record_id...）
+        const transRows = parseCSV(transTxt);
+        transRows.forEach((row, i) => {
+            if(i > 0 && row[2] === 'en' && row[3]) {
+                // フィールド値、またはレコードIDをキーとして翻訳語をマッピング
+                if(row[6]) translations[row[6].trim()] = row[3].trim(); // field_value
+                if(row[4]) translations[row[4].trim()] = row[3].trim(); // record_id
+            }
+        });
+
+        // 3. バス停マスターの安全構築（列インデックス動的検出）
+        const stopRows = parseCSV(stopsTxt);
+        const stopHeaders = stopRows[0].map(h => h.trim());
+        const sIdIdx = stopHeaders.indexOf('stop_id');
+        const sNameIdx = stopHeaders.indexOf('stop_name');
+        const sZoneIdx = stopHeaders.indexOf('zone_id');
+
+        for(let i = 1; i < stopRows.length; i++) {
+            const row = stopRows[i];
+            if(!row[sNameIdx]) continue;
+            let rawName = row[sNameIdx].trim();
+
+            stopsMap[row[sIdIdx]] = {
+                name: rawName,
+                en: translations[rawName] || rawName,
+                zone_id: row[sZoneIdx] ? row[sZoneIdx].trim() : `Z${row[sIdIdx]}`
+            };
+            uniqueStopNames.add(rawName);
+        }
+
+        // 入力補完用のサジェストリストを生成
+        const datalist = document.getElementById('stop-list');
+        Array.from(uniqueStopNames).sort().forEach(name => {
+            const opt = document.createElement('option');
+            opt.value = name;
+            datalist.appendChild(opt);
+        });
+
+        // 4. 運行便（トリップ）情報の構築
+        const tripRows = parseCSV(tripsTxt);
+        const tripHeaders = tripRows[0].map(h => h.trim());
+        const tIdIdx = tripHeaders.indexOf('trip_id');
+        const tRouteIdx = tripHeaders.indexOf('route_id');
+        const tServIdx = tripHeaders.indexOf('service_id');
+        const tHeadIdx = tripHeaders.indexOf('trip_headsign');
+        const tWcIdx = tripHeaders.indexOf('wheelchair_accessible');
+
+        for(let i = 1; i < tripRows.length; i++) {
+            const row = tripRows[i];
+            if(!row[tIdIdx]) continue;
+            tripsMaster[row[tIdIdx].trim()] = {
+                route_id: row[tRouteIdx].trim(),
+                service_id: row[tServIdx].trim(),
+                headsign: row[tHeadIdx] ? row[tHeadIdx].trim() : '',
+                wheelchair: parseInt(row[tWcIdx]) || 0
+            };
+        }
+
+        // 5. 通過予定時刻データの高速インデックス化
+        const stRows = parseCSV(stopTimesTxt);
+        const stHeaders = stRows[0].map(h => h.trim());
+        const stTripIdx = stHeaders.indexOf('trip_id');
+        const stArrIdx = stHeaders.indexOf('arrival_time');
+        const stDepIdx = stHeaders.indexOf('departure_time');
+        const stStopIdx = stHeaders.indexOf('stop_id');
+        const stSeqIdx = stHeaders.indexOf('stop_sequence');
+        const stHeadIdx = stHeaders.indexOf('stop_headsign');
+
+        for(let i = 1; i < stRows.length; i++) {
+            const row = stRows[i];
+            const tId = row[stTripIdx]?.trim();
+            if(!tId) continue;
+
+            if(!stopTimesByTrip[tId]) stopTimesByTrip[tId] = [];
+            stopTimesByTrip[tId].push({
+                stop_id: row[stStopIdx].trim(),
+                arr: row[stArrIdx].trim(),
+                dep: row[stDepIdx].trim(),
+                seq: parseInt(row[stSeqIdx]),
+                headsign: row[stHeadIdx] ? row[stHeadIdx].trim() : ''
+            });
+        }
+        // シーケンス番号（通過順）できれいにソート
+        Object.keys(stopTimesByTrip).forEach(tId => {
+            stopTimesByTrip[tId].sort((a,b) => a.seq - b.seq);
+        });
+
+        // 6. 運賃属性（料金表）のインデックス化
+        parseCSV(fareAttrTxt).forEach((row, i) => {
+            if(i > 0 && row[0]) {
+                fareAttributes[row[0].trim()] = parseFloat(row[1].trim()); // fare_id -> 金額数値
+            }
+        });
+
+        // 7. 運賃適応ルールの解析
+        const frRows = parseCSV(fareRulesTxt);
+        for(let i = 1; i < frRows.length; i++) {
+            if(!frRows[i][0]) continue;
+            fareRules.push({
+                fare_id: frRows[i][0].trim(),
+                route_id: frRows[i][1] ? frRows[i][1].trim() : '',
+                origin_id: frRows[i][2] ? frRows[i][2].trim() : '',
+                dest_id: frRows[i][3] ? frRows[i][3].trim() : ''
+            });
+        }
+
+        // ローディングアニメーションを終了
+        document.getElementById('status-box').style.display = 'none';
+    } catch(e) {
+        console.error(e);
+        document.getElementById('status-box').innerText = "❌ 八戸GTFS完全版データの結合に失敗しました。ファイル名と格納フォルダを確認してください。";
+        document.getElementById('status-box').style.backgroundColor = '#fee2e2';
+        document.getElementById('status-box').style.color = '#b91c1c';
+    }
+});
+
+// 八戸特有の強力なクォーテーション自動剥離付きCSVパース
+function parseCSV(text) {
+    const lines = text.split(/\r?\n/);
+    return lines.filter(l => l.trim() !== '').map(line => {
+        let result = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+            let char = line[i];
+            if (char === '"') {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                result.push(current);
+                current = '';
+            } else {
+                current += char;
+            }
+        }
+        result.push(current);
+        return result.map(v => v.replace(/^"|"$/g, '').trim());
+    });
+}
+
+// 🧮 八戸専用・ゾーン完全紐付け型運賃＆割引額シミュレータ
+function getFareDetails(originStopId, destStopId, routeId) {
+    const originZone = stopsMap[originStopId]?.zone_id;
+    const destZone = stopsMap[destStopId]?.zone_id;
+    
+    // 1. バス停のゾーンIDと路線系統IDが完全マッチする最有力ルールを検索
+    let match = fareRules.find(r => r.origin_id === originZone && r.dest_id === destZone && r.route_id === routeId);
+    
+    // 2. 系統を問わない一般的なゾーンルールから再検索
+    if (!match) {
+        match = fareRules.find(r => r.origin_id === originZone && r.dest_id === destZone && r.route_id === '');
+    }
+
+    if (match && fareAttributes[match.fare_id] !== undefined) {
+        const adultPrice = fareAttributes[match.fare_id];
+        // 💡 計算式: 大人運賃の半額（10円未満の端数を Math.ceil で切り上げ）
+        const childPrice = Math.ceil((adultPrice / 2) / 10) * 10;
+        return {
+            adult: adultPrice + "円",
+            child: childPrice + "円"
+        };
+    }
+    
+    // データが未定義の長距離区間等の場合の安全用フォールバック
+    return { adult: "250円", child: "130円" }; 
+}
+
+// 🎛️ 経路検索＆タイムライン生成エンジン
+function searchRoutes() {
+    const originName = document.getElementById('origin-input').value.trim();
+    const destName = document.getElementById('destination-input').value.trim();
+    const serviceId = document.getElementById('day-select').value;
+    const resultArea = document.getElementById('result-area');
+
+    if(!originName || !destName) {
+        alert("出発地と目的地を入力してください。");
+        return;
+    }
+
+    // 出発地・目的地に名前が一致するすべての標柱IDを配列化
+    const startIds = Object.keys(stopsMap).filter(id => stopsMap[id].name === originName);
+    const endIds = Object.keys(stopsMap).filter(id => stopsMap[id].name === destName);
+
+    if (startIds.length === 0 || endIds.length === 0) {
+        resultArea.innerHTML = `<div class="no-data">ご指定のバス停名が八戸マスターデータ内に存在しません。</div>`;
+        return;
+    }
+
+    let results = [];
+
+    // 全運行便を高速スキャン
+    Object.keys(stopTimesByTrip).forEach(tId => {
+        const tripInfo = tripsMaster[tId];
+        // 曜日区分の前方一致判定（「1_平日」などのスケジュールコードに対応）
+        if(!tripInfo || !tripInfo.service_id.startsWith(serviceId)) return;
+
+        const stopList = stopTimesByTrip[tId];
+        let startIdx = -1;
+        let endIdx = -1;
+
+        for(let i=0; i<stopList.length; i++) {
+            if(startIds.includes(stopList[i].stop_id) && startIdx === -1) startIdx = i;
+            if(endIds.includes(stopList[i].stop_id) && startIdx !== -1 && endIdx === -1) endIdx = i; 
+        }
+
+        // 同一便で安全に乗車➔降車できる直通便を発見した場合
+        if(startIdx !== -1 && endIdx !== -1 && startIdx < endIdx) {
+            results.push({
+                trip_id: tId,
+                route_id: tripInfo.route_id,
+                // 便全体の行先、またはそのバス停通過時の行先表示テキストを採用
+                headsign: stopList[startIdx].headsign || tripInfo.headsign,
+                dep_time: stopList[startIdx].dep,
+                arr_time: stopList[endIdx].arr,
+                origin_stop_id: stopList[startIdx].stop_id,
+                dest_stop_id: stopList[endIdx].stop_id
+            });
+        }
+    });
+
+    // 早い時間順にソート
+    results.sort((a,b) => a.dep_time.localeCompare(b.dep_time));
+
+    if(results.length === 0) {
+        resultArea.innerHTML = `<div class="no-data">ご指定の条件（運行区分）で直通できるバス便が見つかりませんでした。</div>`;
+        return;
+    }
+
+    let html = '';
+    results.forEach(res => {
+        const fareInfo = getFareDetails(res.origin_stop_id, res.dest_stop_id, res.route_id);
+        
+        let displayHeadsign = res.headsign;
+        let displayRoute = res.route_id;
+        
+        if(currentLang === 'en') {
+            displayHeadsign = translations[displayHeadsign] || displayHeadsign;
+            displayRoute = translations[displayRoute] || displayRoute;
+        }
+
+        const childLabel = currentLang === 'ja' ? '小児/障がい者' : 'Child/Discount';
+
+        html += `
+            <div class="route-card">
+                <div class="route-header">
+                    <div class="time-large">${res.dep_time.substring(0,5)} ➔ ${res.arr_time.substring(0,5)}</div>
+                    <div class="fare-container">
+                        <div class="fare-badge">${fareInfo.adult}</div>
+                        <div class="child-fare">（${childLabel}: ${fareInfo.child}）</div>
+                    </div>
+                </div>
+                <div class="route-details">
+                    <div class="node">
+                        <strong>${currentLang === 'ja' ? originName : (stopsMap[res.origin_stop_id]?.en || originName)}</strong> (${res.dep_time.substring(0,5)})
+                    </div>
+                    <div class="bus-info">
+                        🚌 <span class="fare-badge" style="background:#e2e8f0;color:#334155;font-size:12px;padding:2px 6px;">${displayRoute}</span> ${displayHeadsign}
+                    </div>
+                    <div class="node destination">
+                        <strong>${currentLang === 'ja' ? destName : (stopsMap[res.dest_stop_id]?.en || destName)}</strong> (${res.arr_time.substring(0,5)})
+                    </div>
+                </div>
+            </div>`;
+    });
+    resultArea.innerHTML = html;
+}
+
+// 多言語スイッチ機能
+function switchLanguage(lang) {
+    currentLang = lang;
+    document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    if(lang === 'ja') {
+        document.getElementById('title-text').innerText = "🚌 八戸市営バス 経路・運賃乗換案内";
+        document.getElementById('lbl-origin').innerText = "出発地（乗車バス停）：";
+        document.getElementById('lbl-destination').innerText = "目的地（降車バス停）：";
+        document.getElementById('lbl-day').innerText = "運行区分：";
+        document.getElementById('btn-search').innerText = "経路を検索する";
+        document.getElementById('init-message').innerText = "出発地と目的地を入力して検索してください。";
+    } else {
+        document.getElementById('title-text').innerText = "🚌 Hachinohe Bus Route & Fare Search";
+        document.getElementById('lbl-origin').innerText = "Origin Stop:";
+        document.getElementById('lbl-destination').innerText = "Destination Stop:";
+        document.getElementById('lbl-day').innerText = "Day Type:";
+        document.getElementById('btn-search').innerText = "Search Route";
+        document.getElementById('init-message').innerText = "Please enter origin and destination to search.";
+    }
+    if(document.getElementById('origin-input').value) searchRoutes();
+}
+</script>
+
+</body>
+</html>
