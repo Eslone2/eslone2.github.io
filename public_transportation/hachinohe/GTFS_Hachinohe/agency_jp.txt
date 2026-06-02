@@ -1,0 +1,2 @@
+agency_id,agency_official_name,agency_zip_number,agency_address,agency_president_pos,agency_president_name
+"2000020022039","八戸市交通部","0310813     ","青森県八戸市大字新井田字小久保頭4-1","",""
