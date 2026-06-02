@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青森市営バス 経路・運賃乗換案内 (割引運賃・GTFS隔離対応)</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #005bac;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+        .version-info {
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+        .lang-switch button {
+            background: #e2e8f0;
+            border: none;
+            padding: 6px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .lang-switch button.active {
+            background: #005bac;
+            color: #fff;
+        }
+        .status-message {
+            padding: 12px;
+            background: #f0fdf4;
+            color: #166534;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 1px solid #bbf7d0;
+        }
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        label {
+            font-weight: bold;
+            font-size: 14px;
+            color: #475569;
+        }
+        input[type="text"], select {
+            padding: 12px;
+            font-size: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background-color: #fff;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .btn-search {
+            grid-column: 1 / -1;
+            padding: 14px;
+            background: #005bac;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-search:hover {
+            background: #004480;
+        }
+        .route-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+        .route-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+        .time-large {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .fare-container {
+            text-align: right;
+        }
+        .fare-badge {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e11d48;
+            background: #ffe4e6;
+            padding: 4px 12px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        .child-fare {
+            font-size: 12px;
+            color: #475569;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+        .route-details {
+            position: relative;
+            padding-left: 24px;
+        }
+        .route-details::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            bottom: 10px;
+            width: 4px;
+            background: #005bac;
+            border-radius: 2px;
+        }
+        .node {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .node::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border: 3px solid #005bac;
+            border-radius: 50%;
+        }
+        .node.destination::before {
+            border-color: #e11d48;
+        }
+        .bus-info {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin: 6px 0;
+            display: inline-block;
+        }
+        .no-data {
+            text-align: center;
+            color: #94a3b8;
+            padding: 40px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="title-text">🚌 青森市営バス 経路・運賃乗換案内</h1>
+    <div class="version-info" id="feed-version">データ読込中...</div>
+
+    <div class="lang-switch">
+        <button id="btn-ja" class="active" onclick="switchLanguage('ja')">日本語</button>
+        <button id="btn-en" onclick="switchLanguage('en')">English</button>
+    </div>
+
+    <div id="status-box" class="status-message">GTFSデータを読み込んでいます...</div>
+
+    <div class="search-grid">
+        <div class="form-group">
+            <label id="lbl-origin">出発地（乗車バス停）：</label>
+            <input type="text" id="origin-input" list="stop-list" placeholder="例: 青森駅">
+        </div>
+        <div class="form-group">
+            <label id="lbl-destination">目的地（降車バス停）：</label>
+            <input type="text" id="destination-input" list="stop-list" placeholder="例: 古川">
+        </div>
+        <div class="form-group">
+            <label id="lbl-day">運行区分：</label>
+            <select id="day-select">
+                <option value="平日">平日</option>
+                <option value="土日祝">土日祝</option>
+            </select>
+        </div>
+        <button class="btn-search" id="btn-search" onclick="searchRoutes()">経路を検索する</button>
+    </div>
+
+    <datalist id="stop-list"></datalist>
+
+    <div id="result-area">
+        <div class="no-data" id="init-message">出発地と目的地を入力して検索してください。</div>
+    </div>
+</div>
+
+<script>
+let stopsMap = {};
+let uniqueStopNames = new Set();
+let stopTimesByTrip = {};
+let tripsMaster = {};
+let fareRules = [];
+let fareAttributes = {};
+let translations = {};
+let currentLang = 'ja';
+
+window.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // 💡 変更点: すべてのデータ取得元を 'GTFS/' フォルダ配下にパス変更
+        const [feedTxt, stopsTxt, tripsTxt, stopTimesTxt, transTxt, fareAttrTxt, fareRulesTxt] = await Promise.all([
+            fetch('GTFS/feed_info.txt').then(r => r.text()),
+            fetch('GTFS/stops.txt').then(r => r.text()),
+            fetch('GTFS/trips.txt').then(r => r.text()),
+            fetch('GTFS/stop_times.txt').then(r => r.text()),
+            fetch('GTFS/translations.txt').then(r => r.text()),
+            fetch('GTFS/fare_attributes.txt').then(r => r.text()),
+            fetch('GTFS/fare_rules.txt').then(r => r.text())
+        ]);
+
+        parseCSV(transTxt).forEach(row => {
+            if(row[2] && row[4]) translations[row[2].trim()] = row[4].trim();
+        });
+
+        const feedRows = parseCSV(feedTxt);
+        if(feedRows.length > 1) document.getElementById('feed-version').innerText = `適用: ${feedRows[1][7] || '2026年度ダイヤ'}`;
+
+        const stopRows = parseCSV(stopsTxt);
+        const stopHeaders = stopRows[0].map(h => h.trim());
+        const idIdx = stopHeaders.indexOf('stop_id');
+        const nameIdx = stopHeaders.indexOf('stop_name');
+        const zoneIdx = stopHeaders.indexOf('zone_id');
+
+        for(let i = 1; i < stopRows.length; i++) {
+            const row = stopRows[i];
+            if(!row[nameIdx]) continue;
+            let rawName = row[nameIdx].trim();
+            if (!isNaN(rawName) && rawName.includes('.')) continue; 
+
+            stopsMap[row[idIdx]] = {
+                name: rawName,
+                en: translations[rawName] || rawName,
+                zone_id: row[zoneIdx] ? row[zoneIdx].trim() : row[idIdx]
+            };
+            uniqueStopNames.add(rawName);
+        }
+
+        const datalist = document.getElementById('stop-list');
+        Array.from(uniqueStopNames).sort().forEach(name => {
+            const opt = document.createElement('option');
+            opt.value = name;
+            datalist.appendChild(opt);
+        });
+
+        const tripRows = parseCSV(tripsTxt);
+        const tripHeaders = tripRows[0].map(h => h.trim());
+        const tIdIdx = tripHeaders.indexOf('trip_id');
+        const rIdIdx = tripHeaders.indexOf('route_id');
+        const sIdIdx = tripHeaders.indexOf('service_id');
+        const headIdx = tripHeaders.indexOf('trip_headsign');
+        const wcIdx = tripHeaders.indexOf('wheelchair_accessible');
+
+        for(let i = 1; i < tripRows.length; i++) {
+            const row = tripRows[i];
+            if(!row[tIdIdx]) continue;
+            tripsMaster[row[tIdIdx].trim()] = {
+                route_id: row[rIdIdx].trim(),
+                service_id: row[sIdIdx].trim(),
+                headsign: row[headIdx].trim(),
+                wheelchair: parseInt(row[wcIdx]) || 0
+            };
+        }
+
+        const stRows = parseCSV(stopTimesTxt);
+        for(let i = 1; i < stRows.length; i++) {
+            const row = stRows[i];
+            const tId = row[0].trim();
+            if(!stopTimesByTrip[tId]) stopTimesByTrip[tId] = [];
+            stopTimesByTrip[tId].push({
+                stop_id: row[3].trim(),
+                arr: row[1].trim(),
+                dep: row[2].trim(),
+                seq: parseInt(row[4])
+            });
+        }
+        Object.keys(stopTimesByTrip).forEach(tId => {
+            stopTimesByTrip[tId].sort((a,b) => a.seq - b.seq);
+        });
+
+        parseCSV(fareAttrTxt).forEach((row, i) => {
+            if(i > 0 && row[1]) fareAttributes[row[1].trim()] = parseFloat(row[2].trim());
+        });
+
+        const frRows = parseCSV(fareRulesTxt);
+        for(let i = 1; i < frRows.length; i++) {
+            fareRules.push({
+                fare_id: frRows[i][1].trim(),
+                origin_id: frRows[i][2] ? frRows[i][2].trim() : '',
+                dest_id: frRows[i][3] ? frRows[i][3].trim() : '',
+                route_id: frRows[i][0] ? frRows[i][0].trim() : ''
+            });
+        }
+
+        document.getElementById('status-box').style.display = 'none';
+    } catch(e) {
+        console.error(e);
+        document.getElementById('status-box').innerText = "❌ GTFSデータの解析に失敗しました。/GTFS/ フォルダの中に正しくテキストファイルが格納されているか確認してください。";
+        document.getElementById('status-box').style.backgroundColor = '#fee2e2';
+        document.getElementById('status-box').style.color = '#b91c1c';
+    }
+});
+
+function parseCSV(text) {
+    const lines = text.split(/\r?\n/);
+    return lines.filter(l => l.trim() !== '').map(line => {
+        let result = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+            let char = line[i];
+            if (char === '"') {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                result.push(current);
+                current = '';
+            } else {
+                current += char;
+            }
+        }
+        result.push(current);
+        return result.map(v => v.replace(/^"|"$/g, ''));
+    });
+}
+
+function getFareDetails(originStopId, destStopId, routeId) {
+    const originZone = stopsMap[originStopId]?.zone_id;
+    const destZone = stopsMap[destStopId]?.zone_id;
+    
+    let match = fareRules.find(r => r.origin_id === originZone && r.dest_id === destZone && (r.route_id === '' || r.route_id === routeId));
+    if (!match) match = fareRules.find(r => r.origin_id === originZone && r.dest_id === destZone);
+    
+    if (match && fareAttributes[match.fare_id] !== undefined) {
+        const adultPrice = fareAttributes[match.fare_id];
+        const childPrice = Math.ceil((adultPrice / 2) / 10) * 10;
+        
+        return {
+            adult: adultPrice + "円",
+            child: childPrice + "円"
+        };
+    }
+    return null;
+}
+
+function searchRoutes() {
+    const originName = document.getElementById('origin-input').value.trim();
+    const destName = document.getElementById('destination-input').value.trim();
+    const serviceId = document.getElementById('day-select').value;
+    const resultArea = document.getElementById('result-area');
+
+    if(!originName || !destName) {
+        alert("出発地と目的地を入力してください。");
+        return;
+    }
+
+    let results = [];
+
+    Object.keys(stopTimesByTrip).forEach(tId => {
+        const tripInfo = tripsMaster[tId];
+        if(!tripInfo || tripInfo.service_id !== serviceId) return;
+
+        const stopList = stopTimesByTrip[tId];
+        let originIdx = -1;
+        let destIdx = -1;
+
+        for(let i=0; i<stopList.length; i++) {
+            const sName = stopsMap[stopList[i].stop_id]?.name;
+            if(sName === originName && originIdx === -1) originIdx = i;
+            if(sName === destName && originIdx !== -1 && destIdx === -1) destIdx = i; 
+        }
+
+        if(originIdx !== -1 && destIdx !== -1 && originIdx < destIdx) {
+            results.push({
+                trip_id: tId,
+                route_id: tripInfo.route_id,
+                headsign: tripInfo.headsign,
+                wheelchair: tripInfo.wheelchair,
+                dep_time: stopList[originIdx].dep,
+                arr_time: stopList[destIdx].arr,
+                origin_stop_id: stopList[originIdx].stop_id,
+                dest_stop_id: stopList[destIdx].stop_id
+            });
+        }
+    });
+
+    results.sort((a,b) => a.dep_time.localeCompare(b.dep_time));
+
+    if(results.length === 0) {
+        resultArea.innerHTML = `<div class="no-data">${currentLang === 'ja' ? '直通の経路が見つかりませんでした。' : 'No direct route found.'}</div>`;
+        return;
+    }
+
+    let html = '';
+    results.forEach(res => {
+        const fareInfo = getFareDetails(res.origin_stop_id, res.dest_stop_id, res.route_id);
+        const wcIcon = res.wheelchair === 1 ? '♿' : '';
+        
+        let displayHeadsign = res.headsign;
+        let displayRoute = res.route_id;
+        if(currentLang === 'en') {
+            displayHeadsign = translations[displayHeadsign] || displayHeadsign;
+            displayRoute = translations[displayRoute] || displayRoute;
+        }
+
+        let fareHtml = `<div class="fare-badge">不明</div>`;
+        if (fareInfo) {
+            const childLabel = currentLang === 'ja' ? '小児/障がい者' : 'Child/Discount';
+            fareHtml = `
+                <div class="fare-badge">${fareInfo.adult}</div>
+                <div class="child-fare">（${childLabel}: ${fareInfo.child}）</div>
+            `;
+        }
+
+        html += `
+            <div class="route-card">
+                <div class="route-header">
+                    <div class="time-large">${res.dep_time.substring(0,5)} ➔ ${res.arr_time.substring(0,5)}</div>
+                    <div class="fare-container">
+                        ${fareHtml}
+                    </div>
+                </div>
+                <div class="route-details">
+                    <div class="node">
+                        <strong>${currentLang === 'ja' ? originName : (translations[originName] || originName)}</strong> (${res.dep_time.substring(0,5)})
+                    </div>
+                    <div class="bus-info">
+                        🚌 <span class="route-badge">${displayRoute}</span> ${displayHeadsign} ${wcIcon}
+                    </div>
+                    <div class="node destination">
+                        <strong>${currentLang === 'ja' ? destName : (translations[destName] || destName)}</strong> (${res.arr_time.substring(0,5)})
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    resultArea.innerHTML = html;
+}
+
+function switchLanguage(lang) {
+    currentLang = lang;
+    document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    if(lang === 'ja') {
+        document.getElementById('title-text').innerText = "🚌 青森市営バス 経路・運賃乗換案内";
+        document.getElementById('lbl-origin').innerText = "出発地（乗車バス停）：";
+        document.getElementById('lbl-destination').innerText = "目的地（降車バス停）：";
+        document.getElementById('lbl-day').innerText = "運行区分：";
+        document.getElementById('btn-search').innerText = "経路を検索する";
+        document.getElementById('init-message').innerText = "出発地と目的地を入力して検索してください。";
+    } else {
+        document.getElementById('title-text').innerText = "🚌 Aomori Bus Route & Fare Search";
+        document.getElementById('lbl-origin').innerText = "Origin Stop:";
+        document.getElementById('lbl-destination').innerText = "Destination Stop:";
+        document.getElementById('lbl-day').innerText = "Day Type:";
+        document.getElementById('btn-search').innerText = "Search Route";
+        document.getElementById('init-message').innerText = "Please enter origin and destination to search.";
+    }
+    if(document.getElementById('origin-input').value) searchRoutes();
+}
+</script>
+
+</body>
+</html>
